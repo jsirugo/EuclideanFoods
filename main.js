@@ -8,7 +8,7 @@ Vue.createApp({
     data() {
         return {
             title: "Euclidian foods",
-            apetiser:  [
+            appetizers:  [
                 {
                     meal: 'Bruschetta',
                     carbs: 2,
@@ -28,7 +28,7 @@ Vue.createApp({
                     sugar: 10
                 },
             ],
-            mainCourse:  [
+            mainCourses:  [
                 {
                     meal: 'Pizza',
                     carbs: 2,

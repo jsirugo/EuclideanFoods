@@ -12,11 +12,17 @@
 
 <body>
     <div id="app">
-        <h1>{{title}}</h1>
-        <select name="apetiser" id="apetiser" ></select>
-        <select name="dinner" id="dinner"></select>
+        <h1>{{title}}</h1> 
+        <select name="apetiser" id="apetisers" >
+            <option value="" disabled selected hidden>Appetizers</option>
+            <option v-for = "appetizer in appetizers">{{appetizer.meal}}</option>
+        </select>
+        <select name="mainCourse" id="mainCourse">
+            <option value="" disabled selected hidden>Main Course</option>
+            <option value="" v-for="main in mainCourses">{{main.meal}}</option>
+        </select>
         <select name="desert" id="desert">
-            <option disabled value="">Desert</option>
+            <option value="" disabled selected hidden>Desert</option>
             <option value="" v-for="desert in deserts">{{desert.meal}}</option>
         </select>
 
