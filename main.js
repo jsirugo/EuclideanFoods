@@ -1,74 +1,123 @@
 Vue.createApp({
+
     methods: {
-        //metod för att räkna cirkel
+        updateSelectedFood(category) {
+            if (category !== 'Appetizers') this.selectedAppetizer = '';
+            if (category !== 'Main Courses') this.selectedMainCourse = '';
+            if (category !== 'Desserts') this.selectedDessert = '';
+        }
     },
     computed: {
-
+        filteredAppetizers() {
+            return this.foodData.filter(food => food.category === 'Appetizers');
+        },
+        filteredMainCourses() {
+            return this.foodData.filter(food => food.category === 'Main Courses');
+        },
+        filteredDesserts() {
+            return this.foodData.filter(food => food.category === 'Desserts');
+        },
+        selectedMeal() {
+            const selected = this.selectedAppetizer || this.selectedMainCourse || this.selectedDessert;
+            
+            return this.foodData.find(food => food.meal === selected);
+        }
     },
+
     data() {
         return {
+
             title: "Euclidian foods",
-            appetizers:  [
+            selectedAppetizer: '',
+            selectedMainCourse: '',
+            selectedDessert: '',
+            foodData: [
+
                 {
+                    //Appetizers
+                    category: 'Appetizers',
                     meal: 'Bruschetta',
-                    carbs: 2,
+                    description: "Pizza but bread form",
                     protein: 5,
-                    sugar: 10
+                    sugar: 10,
+                    carbs: 2
                 },
+
                 {
+                    category: 'Appetizers',
                     meal: 'Chark',
-                    carbs: 2,
+                    description: "Chark is much meat sliced on tree",
                     protein: 5,
-                    sugar: 10
+                    sugar: 10,
+                    carbs: 2
                 },
                 {
+                    category: 'Appetizers',
                     meal: 'Teriyaki pineapple meatballs',
-                    carbs: 2,
+                    description: "We don't really know what this is",
                     protein: 5,
-                    sugar: 10
+                    sugar: 10,
+                    carbs: 2
                 },
-            ],
-            mainCourses:  [
+
+                // Main Courses
                 {
+                    category: 'Main Courses',
                     meal: 'Pizza',
-                    carbs: 2,
+                    description: "Pizza is a round bliss",
                     protein: 5,
-                    sugar: 10
+                    sugar: 10,
+                    carbs: 2
                 },
+
                 {
+                    category: 'Main Courses',
                     meal: 'Palt',
-                    carbs: 2,
+                    description: "Palt is a typical norbotten helvete",
                     protein: 5,
-                    sugar: 10
+                    sugar: 10,
+                    carbs: 2
                 },
+
                 {
+                    category: 'Main Courses',
                     meal: 'Pasta',
-                    carbs: 2,
+                    description: "Pasta is good.",
                     protein: 5,
-                    sugar: 10
+                    sugar: 10,
+                    carbs: 2
                 },
-            ],
-            deserts:  [
+
+                // Desserts
                 {
+                    category: 'Desserts',
                     meal: 'Creme',
-                    carbs: 2,
+                    description: "Creme and sugar",
                     protein: 5,
-                    sugar: 10
+                    sugar: 10,
+                    carbs: 2
                 },
                 {
+                    category: 'Desserts',
                     meal: 'Whole plum in champagne',
-                    carbs: 2,
+                    description: "Whole plum in champagne.",
                     protein: 5,
-                    sugar: 10
+                    sugar: 10,
+                    carbs: 2
                 },
+
                 {
+                    category: 'Desserts',
                     meal: 'Gelato',
-                    carbs: 2,
+                    description: "Gelato is a ice cream",
                     protein: 5,
-                    sugar: 10
-                },
+                    sugar: 10,
+                    carbs: 2
+                }, 
             ]
 
+
         };
+
     }
 }).mount('#app');

@@ -12,28 +12,38 @@
 
 <body>
     <div id="app">
-        <h1>{{title}}</h1> 
-        <select name="apetiser" id="apetisers" >
+        <h1>{{ title }}</h1>
+    
+        
+        <select id="appetizers" v-model="selectedAppetizer" @change="updateSelectedFood('Appetizers')">
             <option value="" disabled selected hidden>Appetizers</option>
-            <option v-for = "appetizer in appetizers">{{appetizer.meal}}</option>
-        </select>
-        <select name="mainCourse" id="mainCourse">
+            <option v-for="food in filteredAppetizers" :value="food.meal">{{ food.meal }}</option>
+          </select>
+      
+          <select id="mainCourse" v-model="selectedMainCourse" @change="updateSelectedFood('Main Courses')">
             <option value="" disabled selected hidden>Main Course</option>
-            <option value="" v-for="main in mainCourses">{{main.meal}}</option>
-        </select>
-        <select name="desert" id="desert">
-            <option value="" disabled selected hidden>Desert</option>
-            <option value="" v-for="desert in deserts">{{desert.meal}}</option>
-        </select>
+            <option v-for="food in filteredMainCourses" :value="food.meal">{{ food.meal }}</option>
+          </select>
+      
+          <select id="dessert" v-model="selectedDessert" @change="updateSelectedFood('Desserts')">
+            <option value="" disabled selected hidden>Dessert</option>
+            <option v-for="food in filteredDesserts" :value="food.meal">{{ food.meal }}</option>
+          </select>
+        
+    
         <main>
-            
-
-
-
-            <img src="pictures\sadeuc.webp" alt="Euclidian ☹">
+           
+            <div v-if="selectedMeal">
+                <p>Selected: {{selectedMeal.meal}}</p>
+                <p>Fact: {{ selectedMeal.description }}</p>
+                <p>Protein: {{ selectedMeal.protein }}g</p>
+                <p>Sugar: {{ selectedMeal.sugar }}g</p>
+                <p>Carbs: {{ selectedMeal.carbs }}g</p>
+            </div>
         </main>
-
-    </div>
+    
+        <img id="sadeuc" src="pictures\sadeuc.webp" alt="Euclidian ☹">
+      </div>
 </body>
 
 </html>
