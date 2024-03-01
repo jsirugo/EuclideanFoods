@@ -12,7 +12,15 @@
 
 <body>
     <div id="app">
-        <h1>Euclidian Foods</h1>
+        <h1>{{title}}</h1>
+        <select name="apetiser" id="apetiser" ></select>
+        <select name="dinner" id="dinner"></select>
+        <select name="desert" id="desert">
+            <option disabled value="">Desert</option>
+            <option value="" v-for="desert in deserts">{{desert.meal}}</option>
+        </select>
+
+
     </div>
 </body>
 
