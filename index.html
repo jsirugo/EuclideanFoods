@@ -15,17 +15,17 @@
         <h1>{{ title }}</h1>
     
         
-        <select id="appetizers" v-model="selectedAppetizer" @change="updateSelectedFood('Appetizers')">
+        <select id="appetizers" v-model="selectedAppetizer" @change="updateSelectedFood('Appetizers'); generatePieSVG(selectedMeal.protein, selectedMeal.sugar, selectedMeal.carbs)">
             <option value="" disabled selected hidden>Appetizers</option>
             <option v-for="food in filteredAppetizers" :value="food.meal">{{ food.meal }}</option>
           </select>
       
-          <select id="mainCourse" v-model="selectedMainCourse" @change="updateSelectedFood('Main Courses')">
+          <select id="mainCourse" v-model="selectedMainCourse" @change="updateSelectedFood('Main Courses'); generatePieSVG(selectedMeal.protein, selectedMeal.sugar, selectedMeal.carbs)">
             <option value="" disabled selected hidden>Main Course</option>
             <option v-for="food in filteredMainCourses" :value="food.meal">{{ food.meal }}</option>
           </select>
       
-          <select id="dessert" v-model="selectedDessert" @change="updateSelectedFood('Desserts')">
+          <select id="dessert" v-model="selectedDessert" @change="updateSelectedFood('Desserts'); generatePieSVG(selectedMeal.protein, selectedMeal.sugar, selectedMeal.carbs)">
             <option value="" disabled selected hidden>Dessert</option>
             <option v-for="food in filteredDesserts" :value="food.meal">{{ food.meal }}</option>
           </select>
@@ -40,10 +40,12 @@
                 <p>Sugar: {{ selectedMeal.sugar }}g</p>
                 <p>Carbs: {{ selectedMeal.carbs }}g</p>
             </div>
-        </main>
-    
-        <img id="sadeuc" src="pictures\sadeuc.webp" alt="Euclidian ☹">
-      </div>
-</body>
+            
+          </main>
+          
+          <div><img id="sadeuc" src="pictures/sadeuc.webp" alt="Euclidian ☹"></div>
+          
+        </div>
+      </body>
 
 </html>
