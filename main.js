@@ -153,9 +153,9 @@ Vue.createApp({
                     category: 'Main Courses',
                     meal: 'Palt',
                     description: "Palt is a typical norbotten helvete",
-                    protein: 10,
-                    sugar: 1,
-                    carbs: 10
+                    protein: 9,
+                    sugar: 4,
+                    carbs: 9
                 },
 
                 {

@@ -6,7 +6,7 @@
 
     /* skräpcss för att lättare se medans kodning pågår */
 body{
-    padding: 4em;;
+    padding: 4em;
     text-align: center;
 }
 
@@ -28,7 +28,7 @@ svg {
 }
 #buttongrid >* {
    
-    height: 60px;
+    min-height: 60px;
     border-radius: 30px;
     white-space: wrap; 
     max-width: 120px; 
@@ -44,4 +44,18 @@ svg {
 #appetizers,#mainCourse,#dessert{
     text-align: center;
     flex-wrap: wrap;
+}
+
+#euclidPictures {
+    position: relative;
+}
+
+#euclidPictures img {
+    width: 300px; 
+    height: auto; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1; 
+    transition: opacity 10s;
 }
