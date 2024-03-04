@@ -44,9 +44,8 @@ body{
 
 #appetizers, #mainCourse, #dessert {
     text-align: center;
-   
-}
 
+}
 
 li{
     list-style: none;
@@ -60,7 +59,8 @@ li{
 #factList{
     margin: 0 auto;
     margin-top: 17.5px;
-    border:solid;
+    border:solid 1px;
+    border-radius: 2px;
     width: 400px;
     
 }
@@ -78,7 +78,8 @@ li{
 }
 .nutrients ul{
     padding: 5px;
-    border:solid;
+    border:solid 1px;
+    border-radius: 2px;
     justify-self: flex-end;
     display: flex;  
     flex-direction: column;
