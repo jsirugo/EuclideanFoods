@@ -14,7 +14,7 @@
     <div id="app">
         <h1>{{ title }}</h1>
     
-        
+        <div id="buttongrid">
         <select id="appetizers" v-model="selectedAppetizer" @change="updateSelectedFood('Appetizers'); generatePieSVG(selectedMeal.protein, selectedMeal.sugar, selectedMeal.carbs)">
             <option value="" disabled selected hidden>Appetizers</option>
             <option v-for="food in filteredAppetizers" :value="food.meal">{{ food.meal }}</option>
@@ -29,7 +29,7 @@
             <option value="" disabled selected hidden>Dessert</option>
             <option v-for="food in filteredDesserts" :value="food.meal">{{ food.meal }}</option>
           </select>
-        
+        </div>
     
         <main>
            
