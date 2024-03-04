@@ -10,11 +10,8 @@ body{
     text-align: center;
 }
 
-/* Grundkod för cirkel */
-svg {
-    width: 100px;
-    height: 100px;
-}
+
+
 #app .protein {
     color: #ff6384; 
 }
@@ -26,36 +23,81 @@ svg {
 #app .carbs {
     color: #ffce56; 
 }
-#buttongrid >* {
-   
-    min-height: 60px;
-    border-radius: 30px;
-    white-space: wrap; 
-    max-width: 120px; 
-    text-overflow: ellipsis;
-}
 #buttongrid{
+    display: grid;
+    align-content: center;
     margin: 0 auto;
     max-width: 400px;
-    display: grid;
     grid-template-columns: repeat(3, 1fr) 
     
 }
-#appetizers,#mainCourse,#dessert{
+#buttongrid >select {
+   
+    min-height: 30px;
+    border-radius: 10px;
+    white-space: wrap; 
+    width: 90%;
+    padding: 5px;
+    text-overflow: ellipsis;
+    justify-self: center;
+}
+
+#appetizers, #mainCourse, #dessert {
     text-align: center;
-    flex-wrap: wrap;
+   
+}
+
+
+li{
+    list-style: none;
+}
+
+.mainsection-grid {
+    display: grid;
+    
+    grid-template-columns: repeat(1, 1fr);
+}
+#factList{
+    margin: 0 auto;
+    margin-top: 17.5px;
+    border:solid;
+    width: 400px;
+    
+}
+.nutrients {
+   margin-top: 17.5px;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.nutrients svg {
+    justify-self: flex-start;
+    margin-left: 30px;
+    justify-content: top;
+    
+}
+.nutrients ul{
+    padding: 5px;
+    border:solid;
+    justify-self: flex-end;
+    display: flex;  
+    flex-direction: column;
+}
+.nutrients li {
+    text-align: center;
+    line-height: 30px;
 }
 
 #euclidPictures {
-    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 #euclidPictures img {
     width: 300px; 
     height: auto; 
+    margin-top: 17.5px;
     position: absolute;
-    top: 0;
-    left: 0;
     opacity: 1; 
     transition: opacity 10s;
 }

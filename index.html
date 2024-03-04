@@ -30,23 +30,34 @@
             <option v-for="food in filteredDesserts" :value="food.meal">{{ food.meal }}</option>
           </select>
         </div>
-    
-        <main>
-           
-            <div v-if="selectedMeal">
-                <p>Selected: {{selectedMeal.meal}}</p>
-                <p>Fact: {{ selectedMeal.description }}</p>
-                <p class="protein">Protein: {{ selectedMeal.protein }}g</p> 
-                <p class="sugar">Sugar: {{ selectedMeal.sugar }}g</p> 
-                <p class="carbs">Carbs: {{ selectedMeal.carbs }}g</p>
-            </div>
+   
+        <main class="mainsection-grid">
+         
+            
+                <div v-if="selectedMeal">
+                    <ul id="factList">
+                        <li>Selected: {{ selectedMeal.meal }}</li>
+                        <li>Fact: {{ selectedMeal.description }}</li>
+                      </ul>
+                    <div class="nutrients">
+                      <ul>
+                        <li class="protein">Protein: {{ selectedMeal.protein }}g</li> 
+                        <li class="sugar">Sugar: {{ selectedMeal.sugar }}g</li> 
+                        <li class="carbs">Carbs: {{ selectedMeal.carbs }}g</li>
+
+                      </ul>
+                        
+                    </div>
+                </div>
+       
+                <div id="euclidPictures">
+                    <img id="sadeuc" src="pictures/sadeuc.webp" alt="Euclidian ☹"  :style="{ opacity: isOptionSelected ? 0 : 1 }" />
+                    <img id="happyeuc" src="pictures/happyeuc.jpg" alt="Euclidian Happyman":style="{ opacity: isOptionSelected ? 1 : 0 }" />
+                </div>
             
           </main>
           
-          <div id="euclidPictures">
-            <img id="sadeuc" src="pictures/sadeuc.webp" alt="Euclidian ☹" :style="{ opacity: isOptionSelected ? 0 : 1 }">
-            <img id="happyeuc" src="pictures/happyeuc.jpg" alt="Euclidian Happyman" :style="{ opacity: isOptionSelected ? 1 : 0 }">
-        </div>
+         
         
         </div>
       </body>

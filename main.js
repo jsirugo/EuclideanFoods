@@ -71,8 +71,8 @@ Vue.createApp({
             svg.appendChild(sugarSlice);
             svg.appendChild(carbsSlice);
 
-            document.querySelector("body").appendChild(svg);
-            document.querySelector("#app").appendChild(svg);
+            document.querySelector(".nutrients").appendChild(svg);
+            // document.querySelector("#app").appendChild(svg);
         },
         updateSelectedFood(category) {
             if (category !== 'Appetizers') this.selectedAppetizer = '';
@@ -125,7 +125,7 @@ Vue.createApp({
                 {
                     category: 'Appetizers',
                     meal: 'Chark',
-                    description: "Chark is much meat sliced on tree",
+                    description: "Chark is much meat sliced on tree ",
                     protein: 4,
                     sugar: 7,
                     carbs: 3
