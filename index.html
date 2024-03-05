@@ -12,7 +12,13 @@
 
 <body>
     <div id="app">
-        <h1>{{ title }}</h1>
+      <section id="h1-section">
+        <div id="h1-box">
+          <h1>{{ title }}</h1>
+
+        </div>
+
+      </section>
     
         <div id="buttongrid">
         <select id="appetizers" v-model="selectedAppetizer" @change="updateSelectedFood('Appetizers'); generatePieSVG(selectedMeal.protein, selectedMeal.sugar, selectedMeal.carbs)">
@@ -35,7 +41,7 @@
          
             
                 <div v-if="selectedMeal">
-                    <ul id="factList">
+                    <ul class="factList">
                         <li>Selected: {{ selectedMeal.meal }}</li>
                         <li>Fact: {{ selectedMeal.description }}</li>
                       </ul>

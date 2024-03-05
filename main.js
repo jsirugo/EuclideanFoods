@@ -14,8 +14,8 @@ Vue.createApp({
 
             // Ger värdet för storleken till själva cirkeldiagrammet
             svg.setAttribute("viewBox", "0 0 32 32");
-            svg.setAttribute("width", "100"); 
-            svg.setAttribute("height", "100");
+            svg.setAttribute("width", "150"); 
+            svg.setAttribute("height", "150");
 
             // tar värdena från måltiden när den väljs och ställer om dessa från noll till givet värde
             var protein = this.selectedMeal.protein || 0;
