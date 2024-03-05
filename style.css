@@ -154,9 +154,17 @@ li{
 @media screen and (max-width: 450px){
 
     #buttongrid{
-
+        max-width: 280px;
         grid-template-columns: repeat(1, 1fr) 
     }
-
+    #euclidPictures{
+     
+    }
+   #sadeuc,#happyeuc{
+    
+    max-width: 250px;
+    
+    
+   }
 
 }
