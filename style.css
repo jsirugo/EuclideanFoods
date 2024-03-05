@@ -3,12 +3,15 @@
     margin: 0;
     padding: 0;
 }
-
+html{
+    font-family: "Inconsolata", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;}
     /* skräpcss för att lättare se medans kodning pågår */
-body{
+/* body{ */
     /* padding: 4em; */
     /* text-align: center; */
-}
+/* } */
 
 #h1-section{
     background-color: rgba(0, 255, 136, 0.164);
@@ -34,7 +37,7 @@ body{
 }
 h1{
     display: flex;
-    font-size: 48px;
+    font-size: 45px;
     align-self: center;
     text-decoration:  overline ;
     text-decoration-thickness: 2px; 
@@ -64,7 +67,10 @@ h1{
     
 }
 #buttongrid >select {
-   
+    font-family: "Inconsolata", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+
     min-height: 30px;
     min-width: 120px;
     border-radius: 10px;
@@ -96,8 +102,7 @@ li{
     border:solid 1px;
     border-radius: 2px;
     width: fit-content;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding: 20px;
 
     
 }
@@ -116,7 +121,7 @@ li{
 .nutrients ul{
     display: flex;  
     margin-right: 30px;
-    padding: 5px;
+    padding: 15px;
     border:solid 1px;
     border-radius: 2px;
     justify-self: flex-end;
@@ -145,4 +150,13 @@ li{
     position: absolute;
     opacity: 1; 
     transition: opacity 10s;
+}
+@media screen and (max-width: 450px){
+
+    #buttongrid{
+
+        grid-template-columns: repeat(1, 1fr) 
+    }
+
+
 }

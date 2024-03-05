@@ -106,7 +106,7 @@ Vue.createApp({
             //Gömmer första cirkeldiagrammet
             isOptionSelected: false,
 
-            title: "Euclidian foods",
+            title: "Euclidian Foods",
             selectedAppetizer: '',
             selectedMainCourse: '',
             selectedDessert: '',
