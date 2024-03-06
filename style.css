@@ -3,13 +3,15 @@
     margin: 0;
     padding: 0;
 }
+
 html{
+    background-color: rgb(251, 246, 240);
     font-family: "Inconsolata", monospace;
     font-optical-sizing: auto;
     font-style: normal;}
 
 #h1-section{
-    background-color: rgba(0, 255, 136, 0.164);
+    background-color: rgba(104, 253, 184, 0.164);
     /* margin: 0 auto; */
     display: flex;
     justify-content: center; /* center flex items horizontally, in this case */
@@ -31,6 +33,7 @@ html{
 
 }
 h1{
+    
     display: flex;
     font-size: 45px;
     align-self: center;
@@ -40,17 +43,27 @@ h1{
 }
 
 
-#app .protein {
+ .protein {
     color: #ff6384; 
+    text-decoration: underline;
+    text-decoration-color:rgb(0, 255, 136);
+    font-weight: bold;
 }
 
-#app .sugar {
+ .sugar {
     color: #36a2eb;
+    text-decoration: underline;
+    text-decoration-color:rgb(0, 255, 136);
+    font-weight: bold;
 }
 
-#app .carbs {
+ .carbs {
     color: #ffce56; 
+    text-decoration: underline;
+    text-decoration-color:rgb(0, 255, 136);
+    font-weight: bold;
 }
+
 #buttongrid{
     padding-top: 30px;
     gap: 20px;
@@ -66,11 +79,11 @@ h1{
     font-optical-sizing: auto;
     font-style: normal;
 
-    min-height: 30px;
+    min-height: 57px;
     min-width: 120px;
     border-radius: 10px;
     white-space: wrap; 
-    width: 90%;
+    width: 100%;
     padding: 5px;
     text-overflow: ellipsis;
     justify-self: center;
@@ -88,6 +101,7 @@ li{
 .mainsection-grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
+    
 }
 .factList{
     display: flex;
@@ -96,34 +110,52 @@ li{
     margin-top: 17.5px;
     border:solid 1px;
     border-radius: 2px;
-    max-width: 350px;
+    max-width: 315px;
     padding: 20px;
+    background-color: rgba(104, 253, 184, 0.164);
 
-    
 }
+
 .nutrients {
+    
    margin-top: 17.5px;
-    /* justify-content: center; */
+    justify-content: center;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr );
+    gap: 30px;
+
 }
-.nutrients svg {
+/* .nutrients svg {
     justify-self: flex-start;
     margin-left: 10px;
     justify-content: top;
     
-}
-.nutrients ul{
-    display: flex;  
-    margin-right: 30px;
+} */
+/* .nutrients ul{
+     display: flex;  
     padding: 15px;
     border:solid 1px;
     border-radius: 2px;
-    justify-self: flex-end;
+    justify-self: center;
     align-self: center;
     flex-direction: column;
-    height: fit-content;
+    height: fit-content; 
 
+}
+*/
+#foodList{
+    display: flex;
+    justify-content: end;
+}
+#mealNames{
+    
+    display: flex;  
+    padding: 30px;
+   justify-self: end;
+    border:solid 1px;
+    border-radius: 2px;
+    flex-direction: column;
+    background-color: rgba(104, 253, 184, 0.164);
 }
 .nutrients li {
     display: flex;
@@ -132,7 +164,29 @@ li{
     /* text-align: center; */
     line-height: 30px;
 }
+#nutrientsandsvg{
+    display: flex;  
+    padding: 15px;
+    border:solid 1px;
+    border-radius: 2px;
+    align-items: center;
+    justify-self: center;
+    align-self: center;
+    flex-direction: column;
+    height: fit-content;
+    width: 250px;
+    background-color: rgba(104, 253, 184, 0.164);
 
+}
+#submitButton{
+    border-radius: 2px;
+    border:solid 1px black;
+    align-self: flex-end;
+    
+    padding: 15px;
+    width: fit-content;
+    height: fit-content;
+}
 #euclidPictures {
     display: flex;
     justify-content: center;
@@ -146,13 +200,24 @@ li{
     opacity: 1; 
     transition: opacity 10s;
 }
-@media screen and (max-width: 450px){
-
+@media screen and (max-width: 665px){
+    
     #buttongrid{
         max-width: 280px;
         grid-template-columns: repeat(1, 1fr) 
     }
-
+    #foodList{
+        justify-content: center;
+    }
+    .nutrients{
+        gap: 10px;
+        grid-template-columns: repeat(1,1fr);
+        justify-content: center;
+    }
+    #submitButton{
+        justify-self: center;
+        
+    }
    #sadeuc,#happyeuc{
     
     max-width: 250px;

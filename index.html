@@ -2,73 +2,91 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Euclidian Foods</title>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="main.js" defer></script>
-   <link rel="stylesheet" href="style.css">
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Euclidian Foods</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="main.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div id="app">
-      <section id="h1-section">
-        <div id="h1-box">
-          <h1>{{ title }}</h1>
+  <div id="app">
+    <section id="h1-section">
+      <div id="h1-box">
+        <h1>{{ title }}</h1>
 
-        </div>
+      </div>
 
-      </section>
-    
-        <div id="buttongrid">
-        <select id="appetizers" v-model="selectedAppetizer" @change="updateSelectedFood('Appetizers'); generatePieSVG(selectedMeal.protein, selectedMeal.sugar, selectedMeal.carbs)">
-            <option value="" disabled selected hidden>Appetizers</option>
-            <option v-for="food in filteredAppetizers" :value="food.meal">{{ food.meal }}</option>
-          </select>
-      
-          <select id="mainCourse" v-model="selectedMainCourse" @change="updateSelectedFood('Main Courses'); generatePieSVG(selectedMeal.protein, selectedMeal.sugar, selectedMeal.carbs)">
-            <option value="" disabled selected hidden>Main Course</option>
-            <option v-for="food in filteredMainCourses" :value="food.meal">{{ food.meal }}</option>
-          </select>
-      
-          <select id="dessert" v-model="selectedDessert" @change="updateSelectedFood('Desserts'); generatePieSVG(selectedMeal.protein, selectedMeal.sugar, selectedMeal.carbs)">
-            <option value="" disabled selected hidden>Dessert</option>
-            <option v-for="food in filteredDesserts" :value="food.meal">{{ food.meal }}</option>
-          </select>
-        </div>
-   
-        <main class="mainsection-grid">
-         
-            
-                <div v-if="selectedMeal">
-                    <ul class="factList">
-                        <li>Selected: {{ selectedMeal.meal }}</li>
-                        <li>Fact: {{ selectedMeal.description }}</li>
-                      </ul>
-                    <div class="nutrients">
-                      <ul>
-                        <li class="protein">Protein: {{ selectedMeal.protein }}g</li> 
-                        <li class="sugar">Sugar: {{ selectedMeal.sugar }}g</li> 
-                        <li class="carbs">Carbs: {{ selectedMeal.carbs }}g</li>
+    </section>
 
-                      </ul>
-                        
-                    </div>
-                </div>
-       
-                <div id="euclidPictures">
-                    <img id="sadeuc" src="pictures/sadeuc.webp" alt="Euclidian ☹"  :style="{ opacity: isOptionSelected ? 0 : 1 }" />
-                    <img id="happyeuc" src="pictures/happyeuc.jpg" alt="Euclidian Happyman":style="{ opacity: isOptionSelected ? 1 : 0 }" />
-                </div>
-            
-          </main>
-          
-         
-        
-        </div>
-      </body>
+    <div id="buttongrid">
+      <select id="appetizers" v-model="selectedAppetizer"
+        @change="updateSelectedFood('Appetizers'); generatePieSVG(selectedMeal.protein, selectedMeal.sugar, selectedMeal.carbs)">
+        <option value="" disabled selected hidden>Appetizers</option>
+        <option v-for="food in filteredAppetizers" :value="food.meal">{{ food.meal }}</option>
+      </select>
+
+      <select id="mainCourse" v-model="selectedMainCourse"
+        @change="updateSelectedFood('Main Courses'); generatePieSVG(selectedMeal.protein, selectedMeal.sugar, selectedMeal.carbs)">
+        <option value="" disabled selected hidden>Main Course</option>
+        <option v-for="food in filteredMainCourses" :value="food.meal">{{ food.meal }}</option>
+      </select>
+
+      <select id="dessert" v-model="selectedDessert"
+        @change="updateSelectedFood('Desserts'); generatePieSVG(selectedMeal.protein, selectedMeal.sugar, selectedMeal.carbs)">
+        <option value="" disabled selected hidden>Dessert</option>
+        <option v-for="food in filteredDesserts" :value="food.meal">{{ food.meal }}</option>
+      </select>
+    </div>
+
+
+    <main class="mainsection-grid">
+
+      <ul v-if="selectedMeal" class="factList">
+        <li><strong>Selected</strong>: {{ selectedMeal.meal }}</li>
+        <li><strong>Description</strong>: {{ selectedMeal.description }}</li>
+      </ul>
+
+      <div v-if="selectedMeal" class="nutrients">
+
+        <section id="foodList">
+          <ul id="mealNames"> <!--Namnet anges av användaren för planerad måltid bestående av 3 rätter -->
+            <li><h1>Meals</h1>
+              <ul id="foodListinfo"><!--Lista med ihopsatta middagens olika rätter -->
+                <li>
+                  <!--lista med rätterna -->
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+        </section>
+        <ul id="nutrientsandsvg">
+          <div id="svgplace"></div>
+          <li class="protein">Protein: {{ selectedMeal.protein }}g</li>
+          <li class="sugar">Sugar: {{ selectedMeal.sugar }}g</li>
+          <li class="carbs">Carbs: {{ selectedMeal.carbs }}g</li>
+        </ul>
+
+        <button id="submitButton">Add: <strong>{{selectedMeal.meal}}</strong> to list</button>
+      </div>
+
+
+      <div id="euclidPictures">
+        <img id="sadeuc" src="pictures/sadeuc.webp" alt="Euclidian ☹" :style="{ opacity: isOptionSelected ? 0 : 1 }" />
+        <img id="happyeuc" src="pictures/happyeuc.jpg" alt="Euclidian Happyman"
+          :style="{ opacity: isOptionSelected ? 1 : 0 }" />
+      </div>
+
+    </main>
+
+
+
+  </div>
+</body>
 
 </html>

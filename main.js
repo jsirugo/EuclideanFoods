@@ -71,7 +71,8 @@ Vue.createApp({
             svg.appendChild(sugarSlice);
             svg.appendChild(carbsSlice);
 
-            document.querySelector(".nutrients").appendChild(svg);
+            document.querySelector("#svgplace").appendChild(svg);
+            
             // document.querySelector("#app").appendChild(svg);
         },
         updateSelectedFood(category) {
@@ -79,7 +80,7 @@ Vue.createApp({
             if (category !== 'Main Courses') this.selectedMainCourse = '';
             if (category !== 'Desserts') this.selectedDessert = '';
 
-            //Plockar fram cirkeldiagrammet efter att ett alternativ valts
+            //Får frälsares(euklides) spawn
             this.isOptionSelected = true;
         }
         
@@ -103,10 +104,9 @@ Vue.createApp({
 
     data() {
         return {
-            //Gömmer första cirkeldiagrammet
+            //Får frälsares (euklides) spawn
             isOptionSelected: false,
-
-            title: "Euclidian foods",
+            title: "Euclidian Foods",
             selectedAppetizer: '',
             selectedMainCourse: '',
             selectedDessert: '',
