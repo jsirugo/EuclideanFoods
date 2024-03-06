@@ -106,97 +106,22 @@ Vue.createApp({
             //Gömmer första cirkeldiagrammet
             isOptionSelected: false,
 
-            title: "Euclidian Foods",
+            title: "Euclidian foods",
             selectedAppetizer: '',
             selectedMainCourse: '',
             selectedDessert: '',
-            foodData: [
-
-                {
-                    //Appetizers
-                    category: 'Appetizers',
-                    meal: 'Bruschetta',
-                    description: "Pizza but bread form",
-                    protein: 1,
-                    sugar: 2,
-                    carbs: 3
-                },
-
-                {
-                    category: 'Appetizers',
-                    meal: 'Chark',
-                    description: "Chark is much meat sliced on tree ",
-                    protein: 4,
-                    sugar: 7,
-                    carbs: 3
-                },
-                {
-                    category: 'Appetizers',
-                    meal: 'Teriyaki pineapple meatballs',
-                    description: "We don't really know what this is",
-                    protein: 15,
-                    sugar: 8,
-                    carbs: 2
-                },
-
-                // Main Courses
-                {
-                    category: 'Main Courses',
-                    meal: 'Pizza',
-                    description: "Pizza is a round bliss",
-                    protein: 5,
-                    sugar: 10,
-                    carbs: 15
-                },
-
-                {
-                    category: 'Main Courses',
-                    meal: 'Palt',
-                    description: "Palt is a typical norbotten helvete",
-                    protein: 9,
-                    sugar: 4,
-                    carbs: 9
-                },
-
-                {
-                    category: 'Main Courses',
-                    meal: 'Pasta',
-                    description: "Pasta is good.",
-                    protein: 5,
-                    sugar: 10,
-                    carbs: 20
-                },
-
-                // Desserts
-                {
-                    category: 'Desserts',
-                    meal: 'Creme',
-                    description: "Creme and sugar",
-                    protein: 5,
-                    sugar: 10,
-                    carbs: 23
-                },
-                {
-                    category: 'Desserts',
-                    meal: 'Whole plum in champagne',
-                    description: "Whole plum in champagne.",
-                    protein: 0,
-                    sugar: 10,
-                    carbs: 2
-                },
-
-                {
-                    category: 'Desserts',
-                    meal: 'Gelato',
-                    description: "Gelato is a ice cream",
-                    protein: 5,
-                    sugar: 50,
-                    carbs: 20
-                }, 
-            ]
-
-
+            foodData: []
         };
-
-    }
-}).mount('#app');
+        },
+        mounted() {
+            
+            fetch('food.json')
+                .then(response => response.json())
+                .then(data => {
+                    this.foodData = data.fooddata;
+                })
+                .catch(error => {
+                    console.error('Error loading food data:', error);
+                });
+        }
+    }).mount('#app');

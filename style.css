@@ -7,11 +7,6 @@ html{
     font-family: "Inconsolata", monospace;
     font-optical-sizing: auto;
     font-style: normal;}
-    /* skräpcss för att lättare se medans kodning pågår */
-/* body{ */
-    /* padding: 4em; */
-    /* text-align: center; */
-/* } */
 
 #h1-section{
     background-color: rgba(0, 255, 136, 0.164);
@@ -157,9 +152,7 @@ li{
         max-width: 280px;
         grid-template-columns: repeat(1, 1fr) 
     }
-    #euclidPictures{
-     
-    }
+
    #sadeuc,#happyeuc{
     
     max-width: 250px;
