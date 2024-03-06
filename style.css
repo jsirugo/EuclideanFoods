@@ -96,7 +96,7 @@ li{
     margin-top: 17.5px;
     border:solid 1px;
     border-radius: 2px;
-    width: fit-content;
+    max-width: 350px;
     padding: 20px;
 
     
