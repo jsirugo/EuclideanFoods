@@ -209,12 +209,17 @@ li{
     #foodList{
         justify-content: center;
     }
+    #nutrientsandsvg{
+        grid-row: 1;
+    }
     .nutrients{
         gap: 10px;
         grid-template-columns: repeat(1,1fr);
         justify-content: center;
+
     }
     #submitButton{
+        grid-row: 2;
         justify-self: center;
         
     }
