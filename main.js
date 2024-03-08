@@ -85,32 +85,36 @@ Vue.createApp({
         },
         
         addMealToList() {
-            
-            let mealName = "";
-            if (!this.selectedMeal) {
-              return;
+            let mealName = null;
+       
+            if (this.mealCounter === 0 || mealName==="") {
+                mealName = prompt("Choose a name for planned meal!");
             }
-          
-           if(this.mealCounter === 0){
-               mealName = prompt("Choose a name for planned meal!😋");
-           }
-
-            const plannedMeal = {
-              name: mealName,
-              meals: [
-                this.selectedAppetizer,
-                this.selectedMainCourse,
-                this.selectedDessert,
-              ],
-            };
-
-            this.plannedMeals.push(plannedMeal);
         
-            this.mealCounter+=1;
-            if(this.mealCounter===3){
-                this.mealCounter=0;
+            const lastPlannedMeal = this.plannedMeals[this.plannedMeals.length -1];   //hitta senaste planerad måltid (utan denna fick jag spader ☹)
+            if (lastPlannedMeal && lastPlannedMeal.meals.length < 3) {
+                lastPlannedMeal.meals.push(this.selectedMeal.meal);
+            } else {
+                const plannedMeal = {
+                    name: mealName,
+                    meals: [this.selectedMeal.meal],
+                    isOpen: true,
+                };
+        
+                this.plannedMeals.push(plannedMeal);
+                this.mealCounter = 0; 
             }
-          }
+        
+            this.mealCounter += 1;
+        
+            if (this.mealCounter === 3) {
+                this.mealCounter = 0; 
+            }
+        },
+        
+          toggleMealList(meal) {
+            meal.isOpen = !meal.isOpen;
+        }
         
     },
     computed: {
@@ -143,9 +147,11 @@ Vue.createApp({
             selectedAppetizer: '',
             selectedMainCourse: '',
             selectedDessert: '',
-             mealCounter: 0,
+            mealCounter: 0,
             foodData: [],
-            plannedMeals: []
+            plannedMeals: [],
+            
+
         };
         },
         mounted() {

@@ -54,19 +54,18 @@
       <div v-if="selectedMeal" class="nutrients">
 
         <section :style="{ opacity: foodListOpacity }" id="foodList">
-          <ul id="mealNames"> <!--Namnet anges av användaren för planerad måltid bestående av 3 rätter -->
-            <li v-for="meal in plannedMeals" :key="meal.id">
-              <h2>{{ meal.name }}</h2>
-              <ul id="foodListinfo"><!--Lista med ihopsatta middagens olika rätter -->
-                <li>{{ meal.meals[0] }}</li>
-                <li>{{ meal.meals[1] }}</li>
-                <li>{{ meal.meals[2] }}</li>
+          <ul id="mealNames">
+            <li v-for="meal in plannedMeals" :key="meal.name">
+             <button><h2 @click="toggleMealList(meal)">{{ meal.name }}</h2></button> 
+              <ul class="foodListinfo" v-if="meal.isOpen">
+                <li v-for="food in meal.meals">{{ food }}</li>
               </ul>
             </li>
           </ul>
-          
-  
         </section>
+        
+      
+        
         <ul id="nutrientsandsvg">
           <div id="svgplace"></div>
           <li class="protein">Protein: {{ selectedMeal.protein }}g</li>
