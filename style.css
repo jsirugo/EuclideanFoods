@@ -121,7 +121,7 @@ li{
    margin-top: 17.5px;
     justify-content: center;
     display: grid;
-    grid-template-columns: repeat(3, 1fr );
+    grid-template-columns: 1fr 0.6fr 1fr;
     gap: 30px;
 
 }
