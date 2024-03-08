@@ -160,7 +160,6 @@ li{
 .nutrients li {
     display: flex;
     flex-direction: column;
-    gap: 30px;
     /* text-align: center; */
     line-height: 30px;
 }

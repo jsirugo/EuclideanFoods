@@ -55,15 +55,17 @@
 
         <section id="foodList">
           <ul id="mealNames"> <!--Namnet anges av användaren för planerad måltid bestående av 3 rätter -->
-            <li><h1>Meals</h1>
+            <li  v-for="meal in plannedMeals">
+              <h2>{{ meal.name }}</h2>
               <ul id="foodListinfo"><!--Lista med ihopsatta middagens olika rätter -->
-                <li>
-                  <!--lista med rätterna -->
-                </li>
+                <li>{{ meal.meals[0] }}</li>
+                <li>{{ meal.meals[1] }}</li>
+                <li>{{ meal.meals[2] }}</li>
               </ul>
             </li>
           </ul>
-
+          
+  
         </section>
         <ul id="nutrientsandsvg">
           <div id="svgplace"></div>
@@ -72,7 +74,7 @@
           <li class="carbs">Carbs: {{ selectedMeal.carbs }}g</li>
         </ul>
 
-        <button id="submitButton">Add: <strong>{{selectedMeal.meal}}</strong> to list</button>
+        <button @click="addMealToList" id="submitButton">Add: <strong>{{selectedMeal.meal}}</strong> to list</button>
       </div>
 
 

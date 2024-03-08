@@ -82,7 +82,35 @@ Vue.createApp({
 
             //Får frälsares(euklides) spawn
             this.isOptionSelected = true;
-        }
+        },
+        
+        addMealToList() {
+            
+            let mealName = "";
+            if (!this.selectedMeal) {
+              return;
+            }
+          
+           if(this.mealCounter === 0){
+               mealName = prompt("Choose a name for planned meal!😋");
+           }
+
+            const plannedMeal = {
+              name: mealName,
+              meals: [
+                this.selectedAppetizer,
+                this.selectedMainCourse,
+                this.selectedDessert,
+              ],
+            };
+
+            this.plannedMeals.push(plannedMeal);
+        
+            this.mealCounter+=1;
+            if(this.mealCounter===3){
+                this.mealCounter=0;
+            }
+          }
         
     },
     computed: {
@@ -99,7 +127,9 @@ Vue.createApp({
             const selected = this.selectedAppetizer || this.selectedMainCourse || this.selectedDessert;
             
             return this.foodData.find(food => food.meal === selected);
-        }
+        },
+       
+    
     },
 
     data() {
@@ -110,7 +140,9 @@ Vue.createApp({
             selectedAppetizer: '',
             selectedMainCourse: '',
             selectedDessert: '',
-            foodData: []
+             mealCounter: 0,
+            foodData: [],
+            plannedMeals: []
         };
         },
         mounted() {
@@ -123,5 +155,6 @@ Vue.createApp({
                 .catch(error => {
                     console.error('Error loading food data:', error);
                 });
+               
         }
     }).mount('#app');
