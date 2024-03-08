@@ -128,6 +128,9 @@ Vue.createApp({
             
             return this.foodData.find(food => food.meal === selected);
         },
+        foodListOpacity() {
+            return this.plannedMeals.length >= 1 ? 1 : 0; 
+          }
        
     
     },

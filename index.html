@@ -53,9 +53,9 @@
 
       <div v-if="selectedMeal" class="nutrients">
 
-        <section id="foodList">
+        <section :style="{ opacity: foodListOpacity }" id="foodList">
           <ul id="mealNames"> <!--Namnet anges av användaren för planerad måltid bestående av 3 rätter -->
-            <li  v-for="meal in plannedMeals">
+            <li v-for="meal in plannedMeals" :key="meal.id">
               <h2>{{ meal.name }}</h2>
               <ul id="foodListinfo"><!--Lista med ihopsatta middagens olika rätter -->
                 <li>{{ meal.meals[0] }}</li>
