@@ -24,20 +24,17 @@
     </section>
 
     <div id="buttongrid">
-      <select id="appetizers" v-model="selectedAppetizer"
-        @change="updateSelectedFood('Appetizers'); generatePieSVG(selectedMeal.protein, selectedMeal.sugar, selectedMeal.carbs)">
+      <select id="appetizers" v-model="selectedAppetizer" @change="updateSelectedFood('Appetizers'); generatePieSVG(selectedMeal)">
         <option value="" disabled selected hidden>Appetizers</option>
         <option v-for="food in filteredAppetizers" :value="food.meal">{{ food.meal }}</option>
       </select>
 
-      <select id="mainCourse" v-model="selectedMainCourse"
-        @change="updateSelectedFood('Main Courses'); generatePieSVG(selectedMeal.protein, selectedMeal.sugar, selectedMeal.carbs)">
+      <select id="mainCourse" v-model="selectedMainCourse" @change="updateSelectedFood('Main Courses'); generatePieSVG(selectedMeal)">
         <option value="" disabled selected hidden>Main Course</option>
         <option v-for="food in filteredMainCourses" :value="food.meal">{{ food.meal }}</option>
       </select>
 
-      <select id="dessert" v-model="selectedDessert"
-        @change="updateSelectedFood('Desserts'); generatePieSVG(selectedMeal.protein, selectedMeal.sugar, selectedMeal.carbs)">
+      <select id="dessert" v-model="selectedDessert" @change="updateSelectedFood('Desserts'); generatePieSVG(selectedMeal)">
         <option value="" disabled selected hidden>Dessert</option>
         <option v-for="food in filteredDesserts" :value="food.meal">{{ food.meal }}</option>
       </select>
@@ -53,21 +50,26 @@
 
       <div v-if="selectedMeal" class="nutrients">
 
-        <section :style="{ opacity: foodListOpacity }" id="foodList">
-          <ul id="mealNames">
-            <li v-for="meal in plannedMeals" :key="meal.name">
-             <button><h2 @click="toggleMealList(meal)">{{ meal.name }}</h2></button> 
-              <ul class="foodListinfo" v-if="meal.isOpen">
-                <li v-for="food in meal.meals">{{ food }}</li>
-              </ul>
-            </li>
-          </ul>
-        </section>
+        <div>
+          <section :style="{ opacity: foodListOpacity }" id="foodList">
+            <ul id="mealNames">
+              <li v-for="meal in plannedMeals" :key="meal.name">
+                <button><h2 @click="toggleMealList(meal)">{{ meal.name }}</h2></button> 
+                <ul class="foodListinfo" v-if="meal.isOpen">
+                  <li v-for="food in meal.meals">{{ food }}</li>
+                </ul>
+              </li>
+              <li><div id="combinedPieChart"></div></li>
+            </ul>
+          </section>
+          
+          
+        </div>
         
-      
+        
+        
         
         <ul id="nutrientsandsvg">
-          <div id="svgplace"></div>
           <li class="protein">Protein: {{ selectedMeal.protein }}g</li>
           <li class="sugar">Sugar: {{ selectedMeal.sugar }}g</li>
           <li class="carbs">Carbs: {{ selectedMeal.carbs }}g</li>
@@ -84,8 +86,6 @@
       </div>
 
     </main>
-
-
 
   </div>
 </body>
