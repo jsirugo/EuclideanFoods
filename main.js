@@ -108,7 +108,11 @@ Vue.createApp({
             this.isPieActive = true;
         },
         resetPlannedMeals() {
-          this.plannedMeals.splice(0, this.plannedMeals.length ); 
+          this.plannedMeals.forEach((meal, index) => {
+              if (meal.isOpen) {
+                  this.plannedMeals.splice(index, 1);
+              }
+          });
           this.mealCounter = 0;
       },
     },
@@ -135,20 +139,20 @@ Vue.createApp({
         foodListOpacity() {
             return this.plannedMeals.length >= 1 ? 1 : 0;
         },
-        combineAllData() {
-            let AllcombinedData = { protein: 0, sugar: 0, carbs: 0 };
-            this.plannedMeals.forEach(meal => {
-                meal.meals.forEach(mealName => {
-                    const selectedMeal = this.foodData.find(food => food.meal === mealName);
-                    if (selectedMeal) {
-                      AllcombinedData.protein += selectedMeal.protein || 0;
-                      AllcombinedData.sugar += selectedMeal.sugar || 0;
-                      AllcombinedData.carbs += selectedMeal.carbs || 0;
-                    }
-                });
-            });
-            return combinedData;
-        },
+        // combineAllData() {
+        //     let AllcombinedData = { protein: 0, sugar: 0, carbs: 0 };
+        //     this.plannedMeals.forEach(meal => {
+        //         meal.meals.forEach(mealName => {
+        //             const selectedMeal = this.foodData.find(food => food.meal === mealName);
+        //             if (selectedMeal) {
+        //               AllcombinedData.protein += selectedMeal.protein || 0;
+        //               AllcombinedData.sugar += selectedMeal.sugar || 0;
+        //               AllcombinedData.carbs += selectedMeal.carbs || 0;
+        //             }
+        //         });
+        //     });
+        //     return combinedData;
+        // },
         combinedData() {
           let combinedData = { protein: 0, sugar: 0, carbs: 0 };
       
