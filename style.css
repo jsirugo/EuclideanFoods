@@ -37,30 +37,50 @@ h1{
     display: flex;
     font-size: 45px;
     align-self: center;
-    text-decoration:  overline ;
+    text-decoration:  overline  ;
     text-decoration-thickness: 2px; 
     text-decoration-color: rgb(0, 255, 136);
 }
 
 
- .protein {
+ .selectedProtein {
     color: #ff6384; 
     text-decoration: underline;
     text-decoration-color:rgb(0, 255, 136);
     font-weight: bold;
 }
 
- .sugar {
+ .selectedSugar {
     color: #36a2eb;
     text-decoration: underline;
     text-decoration-color:rgb(0, 255, 136);
     font-weight: bold;
 }
 
- .carbs {
+ .selectedCarbs {
     color: #ffce56; 
     text-decoration: underline;
     text-decoration-color:rgb(0, 255, 136);
+    font-weight: bold;
+}
+.combinedProtein {
+    color: #ff9999; 
+    text-decoration: underline;
+    text-decoration-color:rgb(0, 47, 255);
+    font-weight: bold;
+}
+
+ .combinedSugar {
+    color: #66b3ff;
+    text-decoration: underline;
+    text-decoration-color:rgb(0, 47, 255);
+    font-weight: bold;
+}
+
+ .combinedCarbs {
+    color: #99ff99; 
+    text-decoration: underline;
+    text-decoration-color:rgb(0, 47, 255);
     font-weight: bold;
 }
 

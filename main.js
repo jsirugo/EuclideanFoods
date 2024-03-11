@@ -43,14 +43,12 @@ Vue.createApp({
             svg.setAttribute("width", "150");
             svg.setAttribute("height", "150");
 
-            // tar in tre värden till generatorn innan den går vidare ifall man lägger till fler recept
-            let combinedData = { protein: 0, sugar: 0, carbs: 0 };
-            let combinedCount = 0;
+       
+
             // tar värdena från måltiden när den väljs och ställer om dessa från noll till givet värde
             var protein = this.selectedMeal.protein || 0;
             var sugar = this.selectedMeal.sugar || 0;
             var carbs = this.selectedMeal.carbs || 0;
-
 
             // Räknar ut procenten av alla variabler istället för råa siffror
             // då detta gör ritandet av pajbitar oändligt mycket lättare
@@ -58,11 +56,8 @@ Vue.createApp({
             var proteinPercentage = (protein / total) * 100;
             var sugarPercentage = (sugar / total) * 100;
             var carbsPercentage = (carbs / total) * 100;
-
             // Olika färger till pajbitarna. Sätt till motsvarande färg i kommande inforuta
             var colors = ["#ff6384", "#36a2eb", "#ffce56"];
-
-
 
             // Ser till att första pajbiten startar i vertikal linje uppåt
             let startAngle = -90;
@@ -83,9 +78,8 @@ Vue.createApp({
             nutrientsAndSVGContainer.appendChild(svg);
 
         },
-       
         
-       
+  
         updateSelectedFood(category) {
             if (category !== 'Appetizers') this.selectedAppetizer = '';
             if (category !== 'Main Courses') this.selectedMainCourse = '';
@@ -112,12 +106,15 @@ Vue.createApp({
         // },
         printPie(){
             this.isPieActive = true;
-        }
-            
+        },
+        resetPlannedMeals() {
+          this.plannedMeals.splice(0, this.plannedMeals.length ); 
+          this.mealCounter = 0;
+      },
     },
 
     computed: {
-    
+     
         hasPlannedMeals() {
             return this.plannedMeals.length > 0;
           },
@@ -138,60 +135,75 @@ Vue.createApp({
         foodListOpacity() {
             return this.plannedMeals.length >= 1 ? 1 : 0;
         },
-        combinedData() {
-            let combinedData = { protein: 0, sugar: 0, carbs: 0 };
+        combineAllData() {
+            let AllcombinedData = { protein: 0, sugar: 0, carbs: 0 };
             this.plannedMeals.forEach(meal => {
                 meal.meals.forEach(mealName => {
                     const selectedMeal = this.foodData.find(food => food.meal === mealName);
                     if (selectedMeal) {
-                        combinedData.protein += selectedMeal.protein || 0;
-                        combinedData.sugar += selectedMeal.sugar || 0;
-                        combinedData.carbs += selectedMeal.carbs || 0;
+                      AllcombinedData.protein += selectedMeal.protein || 0;
+                      AllcombinedData.sugar += selectedMeal.sugar || 0;
+                      AllcombinedData.carbs += selectedMeal.carbs || 0;
                     }
                 });
             });
             return combinedData;
         },
-        addMealToList() {
-            let mealName = null;
-          
-            if (this.mealCounter === 0 || mealName === "") {
-              mealName = prompt("Choose a name for planned meal!");
-            }
-          
-            const existingMeal = this.plannedMeals.find(meal => meal.meals.includes(this.selectedMeal.meal));
-            if (existingMeal) {
-              alert("Meal already exists in the list!");
-              return;
-            }
-          
-            const lastPlannedMeal = this.plannedMeals[this.plannedMeals.length - 1];
-            if (lastPlannedMeal && lastPlannedMeal.meals.length < 3) {
-              lastPlannedMeal.meals.push(this.selectedMeal.meal);
-            } else {
-              // kolla om tidigare mål är öppna
-              const isOpenMeal = this.plannedMeals.find(meal => meal.isOpen);
-              if (isOpenMeal) {
-                isOpenMeal.isOpen = false; // stäng
+        combinedData() {
+          let combinedData = { protein: 0, sugar: 0, carbs: 0 };
+      
+          this.plannedMeals.forEach(meal => {
+              if (meal.isOpen) { // Gamla combined data slängde ihop alla värden. nya slänger ihop värden om öppen.
+                  meal.meals.forEach(mealName => {
+                      const selectedMeal = this.foodData.find(food => food.meal === mealName);
+                      if (selectedMeal) {
+                          combinedData.protein += selectedMeal.protein || 0;
+                          combinedData.sugar += selectedMeal.sugar || 0;
+                          combinedData.carbs += selectedMeal.carbs || 0;
+                      }
+                  });
               }
-          
-              const plannedMeal = {
+          });
+      
+          return combinedData;
+      },
+        addMealToList() {
+          let mealName = null;
+        
+          if (this.mealCounter === 0 || mealName === "" ){
+            mealName = prompt("Choose a name for planned meal!");
+          }
+        
+          const existingMeal = this.plannedMeals.find(meal => meal.meals.includes(this.selectedMeal.meal));
+          if (existingMeal) {
+            alert("Meal already exists in the list!");
+            return;
+          }
+        
+          const lastPlannedMeal = this.plannedMeals[this.plannedMeals.length - 1];
+          if (lastPlannedMeal && lastPlannedMeal.meals.length < 3) {
+            // Add meal to the last planned meal
+            lastPlannedMeal.meals.push(this.selectedMeal.meal);
+        } else {
+          const isOpenMeal = this.plannedMeals.find(meal => meal.isOpen);
+          if (isOpenMeal) {
+            isOpenMeal.isOpen = false; // stäng
+          }
+
+            // Create a new planned meal if the last one is full or undefined
+            const newPlannedMeal = {
                 name: mealName,
                 meals: [this.selectedMeal.meal],
                 isOpen: true,
-              };
-          
-              this.plannedMeals.push(plannedMeal);
-            }
-          
-            this.mealCounter += 1;
-          
-            if (this.mealCounter === 3) {
-              this.mealCounter = 0;
-            }
-          },
-          combinedPieSVG() {
-            if(this.isPieActive ===true){
+            };
+        
+            this.plannedMeals.push(newPlannedMeal);
+        }
+          console.log(this.plannedMeals);
+          this.mealCounter = (this.mealCounter + 1) % 3;
+      },
+          combinedOnOpenPieSVG() {
+            if(this.isPieActive === true){
                 
             const svgNS = "http://www.w3.org/2000/svg";
             // Calculate percentages for combined chart
@@ -224,6 +236,40 @@ Vue.createApp({
              this.isPieActive =false; // av någon anledning behövs denna för att kunna använda generate Pie here knappen två gånger.
         }
     },
+//     combinedAllPieSVG() {
+//       if(this.isPieActive === true){
+          
+//       const svgNS = "http://www.w3.org/2000/svg";
+//       // Calculate percentages for combined chart
+//       var totalCombined = this.combineAllData.protein + this.combineAllData.sugar + this.combineAllData.carbs;
+  
+//       // Colors for combined chart
+//       var combinedColors = ["#ff9999", "#66b3ff", "#99ff99"];
+  
+//       // Create SVG container for combined chart
+//       const allCombinedSVG = document.createElementNS(svgNS, "svg");
+//       allCombinedSVG.setAttribute("viewBox", "0 0 32 32");
+//       allCombinedSVG.setAttribute("width", "150");
+//       allCombinedSVG.setAttribute("height", "150");
+  
+//       // Clear previous content
+//       const AllPieChartContainer = document.getElementById("allCombinedData");
+//       AllPieChartContainer.innerHTML = '';
+  
+//       // Create separate SVG elements for combined chart
+//       var combinedStartAngle = -90;
+//       for (let nutrient of ["protein", "sugar", "carbs"]) {
+//           let percentage = (this.combineAllData[nutrient] / totalCombined) * 100;
+//           let slice = this.createPieSlice(percentage, combinedColors[["protein", "sugar", "carbs"].indexOf(nutrient)], combinedStartAngle); // Access color based on nutrient index
+//           combinedStartAngle += percentage * 360 / 100;
+//           combinedSVG.appendChild(slice); // Append to the combined SVG
+//       }
+  
+//       // Append the combined SVG to the container
+//       AllPieChartContainer.appendChild(combinedSVG);
+//       //  this.isPieActive = false; // av någon anledning behövs denna för att kunna använda generate Pie here knappen två gånger.
+//   }
+// },
 
 
     },
@@ -231,8 +277,9 @@ Vue.createApp({
     data() {
         return {
             //Får frälsares (euklides) spawn
+            
             isOptionSelected: false,
-            isPieActive:true,
+            isPieActive:false,
             title: "Euclidian Foods",
             selectedAppetizer: '',
             selectedMainCourse: '',
@@ -242,6 +289,7 @@ Vue.createApp({
             plannedMeals: [],
             selectedMealsForPie: [],
             foodListOpacity: 1,
+            
 
         };
     },

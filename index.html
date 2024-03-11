@@ -42,10 +42,11 @@
 
 
     <main class="mainsection-grid">
-
+      
       <ul v-if="selectedMeal" class="factList">
         <li><strong>Selected</strong>: {{ selectedMeal.meal }}</li>
         <li><strong>Description</strong>: {{ selectedMeal.description }}</li>
+      
       </ul>
 
       <div v-if="selectedMeal" class="nutrients" >
@@ -57,26 +58,35 @@
                 <button><h2 @click="toggleMealList(meal); ">{{ meal.name }}</h2></button>
                 <ul class="foodListinfo" v-if="meal.isOpen">
                   <li v-for="food in meal.meals">{{ food }}</li>
+                  <li>
+                    <p class="combinedProtein">Protein:{{ combinedData.protein }}</p>
+                    <p class="combinedSugar">Sugar:{{ combinedData.sugar }}</p>
+                    <p class="combinedCarbs">Carbs:{{ combinedData.carbs }}</p>
+                  </li>
                   <li id="combinedPieChart"> 
               </li> 
-                  <li><button @click="combinedPieSVG; printPie()">Generate Pie here!</button></li>
+              
+                  <li><button @click="printPie(); combinedOnOpenPieSVG; ">Generate Pie here!</button></li>
                  
+                  <button @click ="resetPlannedMeals()" id="resetbutton">reset</button>
+                  
                 </ul>
-               
+             
               </li>
             </ul>
+            
           </section>
         </div>
         
         
         <ul id="nutrientsandsvg">
-          <li class="protein">Protein: {{ selectedMeal.protein }}g</li>
-          <li class="sugar">Sugar: {{ selectedMeal.sugar }}g</li>
-          <li class="carbs">Carbs: {{ selectedMeal.carbs }}g</li>
+          <li class="selectedProtein">Protein: {{ selectedMeal.protein }}g</li>
+          <li class="selectedSugar">Sugar: {{ selectedMeal.sugar }}g</li>
+          <li class="selectedCarbs">Carbs: {{ selectedMeal.carbs }}g</li>
         </ul>
-
+        
         <button @click="addMealToList;" id="submitButton">Add: <strong>{{ selectedMeal.meal }}</strong> to list</button>
-
+        
 
       </div>
 
