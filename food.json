@@ -2,6 +2,22 @@
     "fooddata": [
         {
             "category": "Appetizers",
+            "meal": "Antipasto Platter",
+            "description": "Assorted Italian meats, cheeses, olives, and marinated vegetables, served with crusty bread.",
+            "protein": 12,
+            "sugar": 4,
+            "carbs": 10
+        },
+        {
+            "category": "Appetizers",
+            "meal": "Artichoke Dip",
+            "description": "Creamy artichoke dip baked with cheese until bubbly and golden, served with tortilla chips.",
+            "protein": 6,
+            "sugar": 2,
+            "carbs": 12
+        },
+        {
+            "category": "Appetizers",
             "meal": "Bruschetta",
             "description": "Toasted bread topped with diced tomatoes, basil, garlic, and balsamic glaze.",
             "protein": 2,
@@ -10,27 +26,75 @@
         },
         {
             "category": "Appetizers",
-            "meal": "Mozzarella Sticks",
-            "description": "Breaded and fried mozzarella cheese sticks served with marinara sauce for dipping.",
-            "protein": 8,
+            "meal": "Buffalo Cauliflower Bites",
+            "description": "Crispy cauliflower florets tossed in buffalo sauce, served with ranch dressing and celery sticks.",
+            "protein": 4,
             "sugar": 2,
-            "carbs": 15
+            "carbs": 10
         },
         {
             "category": "Appetizers",
-            "meal": "Teriyaki pineapple meatballs",
-            "description": "We don't really know what this is",
+            "meal": "Caprese Skewers",
+            "description": "Fresh mozzarella balls, cherry tomatoes, and basil leaves skewered and drizzled with balsamic glaze.",
+            "protein": 6,
+            "sugar": 2,
+            "carbs": 8
+        },
+        {
+            "category": "Appetizers",
+            "meal": "Cheese Platter",
+            "description": "Assorted cheeses served with crackers, grapes, and honey for drizzling.",
+            "protein": 10,
+            "sugar": 5,
+            "carbs": 10
+        },
+        {
+            "category": "Appetizers",
+            "meal": "Chicken Wings",
+            "description": "Crispy chicken wings tossed in your choice of sauce, served with celery sticks and blue cheese dressing.",
             "protein": 15,
-            "sugar": 1,
+            "sugar": 2,
             "carbs": 5
         },
         {
             "category": "Appetizers",
-            "meal": "Stuffed Jalapeños",
-            "description": "Jalapeño peppers stuffed with cream cheese, wrapped in bacon, and baked until crispy.",
-            "protein": 6,
-            "sugar": 2,
+            "meal": "Coconut Shrimp",
+            "description": "Large shrimp coated in coconut batter and fried until golden, served with sweet chili sauce for dipping.",
+            "protein": 8,
+            "sugar": 5,
+            "carbs": 20
+        },
+        {
+            "category": "Appetizers",
+            "meal": "Crab Cakes",
+            "description": "Pan-seared crab cakes made with lump crab meat, served with remoulade sauce.",
+            "protein": 12,
+            "sugar": 1,
             "carbs": 8
+        },
+        {
+            "category": "Appetizers",
+            "meal": "Deviled Eggs",
+            "description": "Hard-boiled eggs filled with a creamy mixture of egg yolks, mayonnaise, and mustard, topped with paprika.",
+            "protein": 5,
+            "sugar": 1,
+            "carbs": 3
+        },
+        {
+            "category": "Appetizers",
+            "meal": "Fried Calamari",
+            "description": "Tender rings of calamari lightly breaded and fried until golden, served with marinara sauce.",
+            "protein": 10,
+            "sugar": 3,
+            "carbs": 15
+        },
+        {
+            "category": "Appetizers",
+            "meal": "Fried Pickles",
+            "description": "Dill pickle slices coated in seasoned breadcrumbs and fried until crispy, served with ranch dressing.",
+            "protein": 3,
+            "sugar": 2,
+            "carbs": 15
         },
         {
             "category": "Appetizers",
@@ -39,6 +103,14 @@
             "protein": 4,
             "sugar": 1,
             "carbs": 20
+        },
+        {
+            "category": "Appetizers",
+            "meal": "Mozzarella Sticks",
+            "description": "Breaded and fried mozzarella cheese sticks served with marinara sauce for dipping.",
+            "protein": 8,
+            "sugar": 2,
+            "carbs": 15
         },
         {
             "category": "Appetizers",
@@ -58,27 +130,11 @@
         },
         {
             "category": "Appetizers",
-            "meal": "Fried Calamari",
-            "description": "Tender rings of calamari lightly breaded and fried until golden, served with marinara sauce.",
-            "protein": 10,
-            "sugar": 3,
-            "carbs": 15
-        },
-        {
-            "category": "Appetizers",
-            "meal": "Crab Cakes",
-            "description": "Pan-seared crab cakes made with lump crab meat, served with remoulade sauce.",
-            "protein": 12,
-            "sugar": 1,
+            "meal": "Stuffed Jalapeños",
+            "description": "Jalapeño peppers stuffed with cream cheese, wrapped in bacon, and baked until crispy.",
+            "protein": 6,
+            "sugar": 2,
             "carbs": 8
-        },
-        {
-            "category": "Appetizers",
-            "meal": "Cheese Platter",
-            "description": "Assorted cheeses served with crackers, grapes, and honey for drizzling.",
-            "protein": 10,
-            "sugar": 5,
-            "carbs": 10
         },
         {
             "category": "Appetizers",
@@ -90,27 +146,11 @@
         },
         {
             "category": "Appetizers",
-            "meal": "Fried Pickles",
-            "description": "Dill pickle slices coated in seasoned breadcrumbs and fried until crispy, served with ranch dressing.",
-            "protein": 3,
-            "sugar": 2,
-            "carbs": 15
-        },
-        {
-            "category": "Appetizers",
-            "meal": "Chicken Wings",
-            "description": "Crispy chicken wings tossed in your choice of sauce, served with celery sticks and blue cheese dressing.",
+            "meal": "Teriyaki pineapple meatballs",
+            "description": "We don't really know what this is",
             "protein": 15,
-            "sugar": 2,
+            "sugar": 1,
             "carbs": 5
-        },
-        {
-            "category": "Appetizers",
-            "meal": "Antipasto Platter",
-            "description": "Assorted Italian meats, cheeses, olives, and marinated vegetables, served with crusty bread.",
-            "protein": 12,
-            "sugar": 4,
-            "carbs": 10
         },
         {
             "category": "Appetizers",
@@ -121,116 +161,12 @@
             "carbs": 15
         },
         {
-            "category": "Appetizers",
-            "meal": "Caprese Skewers",
-            "description": "Fresh mozzarella balls, cherry tomatoes, and basil leaves skewered and drizzled with balsamic glaze.",
-            "protein": 6,
-            "sugar": 2,
-            "carbs": 8
-        },
-        {
-            "category": "Appetizers",
-            "meal": "Deviled Eggs",
-            "description": "Hard-boiled eggs filled with a creamy mixture of egg yolks, mayonnaise, and mustard, topped with paprika.",
-            "protein": 5,
-            "sugar": 1,
-            "carbs": 3
-        },
-        {
-            "category": "Appetizers",
-            "meal": "Buffalo Cauliflower Bites",
-            "description": "Crispy cauliflower florets tossed in buffalo sauce, served with ranch dressing and celery sticks.",
-            "protein": 4,
-            "sugar": 2,
-            "carbs": 10
-        },
-        {
-            "category": "Appetizers",
-            "meal": "Artichoke Dip",
-            "description": "Creamy artichoke dip baked with cheese until bubbly and golden, served with tortilla chips.",
-            "protein": 6,
-            "sugar": 2,
-            "carbs": 12
-        },
-        {
-            "category": "Appetizers",
-            "meal": "Coconut Shrimp",
-            "description": "Large shrimp coated in coconut batter and fried until golden, served with sweet chili sauce for dipping.",
-            "protein": 8,
-            "sugar": 5,
-            "carbs": 20
-        },
-        {
             "category": "Main Courses",
-            "meal": "Palt",
-            "description": "Palt was forged in the north by stora starka arbetskvinnor in the ultimate format of food for world domination",
-            "protein": 9,
-            "sugar": 4,
-            "carbs": 9
-        },
-        {
-            "category": "Main Courses",
-            "meal": "Salmon with Lemon Butter Sauce",
-            "description": "Pan-seared salmon fillet topped with a tangy lemon butter sauce, served with rice pilaf.",
+            "meal": "Beef Stroganoff",
+            "description": "Tender strips of beef cooked in a creamy mushroom sauce, served over egg noodles.",
             "protein": 20,
-            "sugar": 2,
-            "carbs": 10
-        },
-        {
-            "category": "Main Courses",
-            "meal": "Chicken Parmesan",
-            "description": "Breaded chicken breast topped with marinara sauce and melted mozzarella cheese, served over spaghetti.",
-            "protein": 22,
-            "sugar": 5,
-            "carbs": 25
-        },
-        {
-            "category": "Main Courses",
-            "meal": "Vegetable Stir Fry",
-            "description": "Assorted vegetables stir-fried in a savory sauce, served over steamed rice.",
-            "protein": 10,
-            "sugar": 6,
-            "carbs": 30
-        },
-        {
-            "category": "Main Courses",
-            "meal": "Beef Wellington",
-            "description": "Tender beef fillet wrapped in puff pastry with mushrooms and pâté, served with red wine sauce.",
-            "protein": 30,
             "sugar": 4,
-            "carbs": 15
-        },
-        {
-            "category": "Main Courses",
-            "meal": "Shrimp Scampi",
-            "description": "Large shrimp sautéed in garlic butter and white wine, served over linguine.",
-            "protein": 18,
-            "sugar": 3,
-            "carbs": 20
-        },
-        {
-            "category": "Main Courses",
-            "meal": "Roast Chicken",
-            "description": "Whole roast chicken seasoned with herbs and lemon, served with mashed potatoes and gravy.",
-            "protein": 20,
-            "sugar": 3,
-            "carbs": 15
-        },
-        {
-            "category": "Main Courses",
-            "meal": "Eggplant Parmesan",
-            "description": "Slices of breaded eggplant layered with marinara sauce and melted cheese, served with garlic bread.",
-            "protein": 15,
-            "sugar": 6,
             "carbs": 25
-        },
-        {
-            "category": "Main Courses",
-            "meal": "Sushi Platter",
-            "description": "Assorted sushi rolls and sashimi served with soy sauce, wasabi, and pickled ginger.",
-            "protein": 18,
-            "sugar": 5,
-            "carbs": 35
         },
         {
             "category": "Main Courses",
@@ -242,48 +178,24 @@
         },
         {
             "category": "Main Courses",
-            "meal": "Lamb Curry",
-            "description": "Tender lamb simmered in a fragrant curry sauce, served with basmati rice and naan bread.",
-            "protein": 25,
-            "sugar": 8,
-            "carbs": 30
+            "meal": "Beef Wellington",
+            "description": "Tender beef fillet wrapped in puff pastry with mushrooms and pâté, served with red wine sauce.",
+            "protein": 30,
+            "sugar": 4,
+            "carbs": 15
         },
         {
             "category": "Main Courses",
-            "meal": "Stuffed Bell Peppers",
-            "description": "Bell peppers filled with a savory mixture of ground beef, rice, and tomato sauce, baked until tender.",
-            "protein": 20,
+            "meal": "Chicken Parmesan",
+            "description": "Breaded chicken breast topped with marinara sauce and melted mozzarella cheese, served over spaghetti.",
+            "protein": 22,
             "sugar": 5,
             "carbs": 25
         },
         {
             "category": "Main Courses",
-            "meal": "Vegetarian Lasagna",
-            "description": "Layers of pasta, marinara sauce, and assorted vegetables topped with melted cheese.",
-            "protein": 15,
-            "sugar": 7,
-            "carbs": 30
-        },
-        {
-            "category": "Main Courses",
-            "meal": "Grilled Swordfish",
-            "description": "Flaky grilled swordfish steak seasoned with lemon and herbs, served with roasted potatoes.",
-            "protein": 22,
-            "sugar": 2,
-            "carbs": 10
-        },
-        {
-            "category": "Main Courses",
-            "meal": "Mushroom Risotto",
-            "description": "Creamy risotto cooked with mushrooms, garlic, and Parmesan cheese, topped with fresh parsley.",
-            "protein": 10,
-            "sugar": 3,
-            "carbs": 35
-        },
-        {
-            "category": "Main Courses",
-            "meal": "Beef Stroganoff",
-            "description": "Tender strips of beef cooked in a creamy mushroom sauce, served over egg noodles.",
+            "meal": "Chicken Piccata",
+            "description": "Tender chicken breast sautéed in a lemon and caper sauce, served with angel hair pasta.",
             "protein": 20,
             "sugar": 4,
             "carbs": 25
@@ -298,9 +210,9 @@
         },
         {
             "category": "Main Courses",
-            "meal": "Vegetable Curry",
-            "description": "Assorted vegetables simmered in a spicy curry sauce, served with fragrant jasmine rice.",
-            "protein": 12,
+            "meal": "Eggplant Parmesan",
+            "description": "Slices of breaded eggplant layered with marinara sauce and melted cheese, served with garlic bread.",
+            "protein": 15,
             "sugar": 6,
             "carbs": 25
         },
@@ -314,57 +226,113 @@
         },
         {
             "category": "Main Courses",
-            "meal": "Chicken Piccata",
-            "description": "Tender chicken breast sautéed in a lemon and caper sauce, served with angel hair pasta.",
-            "protein": 20,
+            "meal": "Grilled Swordfish",
+            "description": "Flaky grilled swordfish steak seasoned with lemon and herbs, served with roasted potatoes.",
+            "protein": 22,
+            "sugar": 2,
+            "carbs": 10
+        },
+        {
+            "category": "Main Courses",
+            "meal": "Lamb Curry",
+            "description": "Tender lamb simmered in a fragrant curry sauce, served with basmati rice and naan bread.",
+            "protein": 25,
+            "sugar": 8,
+            "carbs": 30
+        },
+        {
+            "category": "Main Courses",
+            "meal": "Mushroom Risotto",
+            "description": "Creamy risotto cooked with mushrooms, garlic, and Parmesan cheese, topped with fresh parsley.",
+            "protein": 10,
+            "sugar": 3,
+            "carbs": 35
+        },
+        {
+            "category": "Main Courses",
+            "meal": "Palt",
+            "description": "Palt was forged in the north by stora starka arbetskvinnor in the ultimate format of food for world domination",
+            "protein": 9,
             "sugar": 4,
+            "carbs": 9
+        },
+        {
+            "category": "Main Courses",
+            "meal": "Roast Chicken",
+            "description": "Whole roast chicken seasoned with herbs and lemon, served with mashed potatoes and gravy.",
+            "protein": 20,
+            "sugar": 3,
+            "carbs": 15
+        },
+        {
+            "category": "Main Courses",
+            "meal": "Salmon with Lemon Butter Sauce",
+            "description": "Pan-seared salmon fillet topped with a tangy lemon butter sauce, served with rice pilaf.",
+            "protein": 20,
+            "sugar": 2,
+            "carbs": 10
+        },
+        {
+            "category": "Main Courses",
+            "meal": "Shrimp Scampi",
+            "description": "Large shrimp sautéed in garlic butter and white wine, served over linguine.",
+            "protein": 18,
+            "sugar": 3,
+            "carbs": 20
+        },
+        {
+            "category": "Main Courses",
+            "meal": "Stuffed Bell Peppers",
+            "description": "Bell peppers filled with a savory mixture of ground beef, rice, and tomato sauce, baked until tender.",
+            "protein": 20,
+            "sugar": 5,
             "carbs": 25
         },
         {
-            "category": "Desserts",
-            "meal": "Whole plum in champagne.",
-            "description": "Whole plum in champagne.",
-            "protein": 3,
-            "sugar": 25,
-            "carbs": 30
-        },
-        {
-            "category": "Desserts",
-            "meal": "New York Cheesecake",
-            "description": "Classic creamy cheesecake with a graham cracker crust, topped with strawberry compote.",
-            "protein": 6,
-            "sugar": 30,
-            "carbs": 40
-        },
-        {
-            "category": "Desserts",
-            "meal": "Lemon Tart",
-            "description": "Tangy lemon curd in a buttery tart shell, dusted with powdered sugar.",
-            "protein": 2,
-            "sugar": 20,
+            "category": "Main Courses",
+            "meal": "Sushi Platter",
+            "description": "Assorted sushi rolls and sashimi served with soy sauce, wasabi, and pickled ginger.",
+            "protein": 18,
+            "sugar": 5,
             "carbs": 35
         },
         {
-            "category": "Desserts",
-            "meal": "Red Velvet Cupcakes",
-            "description": "Moist red velvet cupcakes topped with cream cheese frosting and sprinkles.",
-            "protein": 3,
-            "sugar": 22,
+            "category": "Main Courses",
+            "meal": "Vegetable Curry",
+            "description": "Assorted vegetables simmered in a spicy curry sauce, served with fragrant jasmine rice.",
+            "protein": 12,
+            "sugar": 6,
+            "carbs": 25
+        },
+        {
+            "category": "Main Courses",
+            "meal": "Vegetable Lasagna",
+            "description": "Layers of pasta, marinara sauce, and assorted vegetables topped with melted cheese.",
+            "protein": 15,
+            "sugar": 7,
             "carbs": 30
         },
         {
-            "category": "Desserts",
-            "meal": "Tiramisu",
-            "description": "Classic Italian dessert made with layers of coffee-soaked ladyfingers and mascarpone cheese.",
-            "protein": 6,
-            "sugar": 20,
-            "carbs": 35
+            "category": "Main Courses",
+            "meal": "Vegetable Stir Fry",
+            "description": "Assorted vegetables stir-fried in a savory sauce, served over steamed rice.",
+            "protein": 10,
+            "sugar": 6,
+            "carbs": 30
         },
         {
             "category": "Desserts",
             "meal": "Apple Pie",
             "description": "Homemade apple pie with a flaky crust, served warm with a scoop of vanilla ice cream.",
             "protein": 2,
+            "sugar": 25,
+            "carbs": 40
+        },
+        {
+            "category": "Desserts",
+            "meal": "Baklava",
+            "description": "Layers of flaky pastry filled with nuts and sweetened with honey syrup.",
+            "protein": 4,
             "sugar": 25,
             "carbs": 40
         },
@@ -378,19 +346,27 @@
         },
         {
             "category": "Desserts",
-            "meal": "Panna Cotta",
-            "description": "Silky Italian dessert made with cream, sugar, and gelatin, served with berry compote.",
-            "protein": 4,
-            "sugar": 15,
-            "carbs": 25
+            "meal": "Black Forest Cake",
+            "description": "Decadent chocolate cake layered with whipped cream and cherries.",
+            "protein": 5,
+            "sugar": 35,
+            "carbs": 40
         },
         {
             "category": "Desserts",
-            "meal": "Creme Brulee",
-            "description": "Creamy custard topped with caramelized sugar, served with fresh berries.",
-            "protein": 5,
-            "sugar": 30,
+            "meal": "Cinnamon Roll",
+            "description": "Soft and fluffy cinnamon roll topped with cream cheese frosting.",
+            "protein": 3,
+            "sugar": 20,
             "carbs": 35
+        },
+        {
+            "category": "Desserts",
+            "meal": "Chocolate Chip Cookies",
+            "description": "Classic chocolate chip cookies, warm and gooey from the oven.",
+            "protein": 2,
+            "sugar": 15,
+            "carbs": 25
         },
         {
             "category": "Desserts",
@@ -410,6 +386,46 @@
         },
         {
             "category": "Desserts",
+            "meal": "Lemon Tart",
+            "description": "Tangy lemon curd in a buttery tart shell, dusted with powdered sugar.",
+            "protein": 2,
+            "sugar": 20,
+            "carbs": 35
+        },
+        {
+            "category": "Desserts",
+            "meal": "Mango Sorbet",
+            "description": "Refreshing mango sorbet made with ripe mangoes and sugar.",
+            "protein": 1,
+            "sugar": 30,
+            "carbs": 35
+        },
+        {
+            "category": "Desserts",
+            "meal": "Molten Lava Cake",
+            "description": "Warm chocolate cake with a gooey chocolate center, served with vanilla ice cream.",
+            "protein": 4,
+            "sugar": 30,
+            "carbs": 40
+        },
+        {
+            "category": "Desserts",
+            "meal": "New York Cheesecake",
+            "description": "Classic creamy cheesecake with a graham cracker crust, topped with strawberry compote.",
+            "protein": 6,
+            "sugar": 30,
+            "carbs": 40
+        },
+        {
+            "category": "Desserts",
+            "meal": "Panna Cotta",
+            "description": "Silky Italian dessert made with cream, sugar, and gelatin, served with berry compote.",
+            "protein": 4,
+            "sugar": 15,
+            "carbs": 25
+        },
+        {
+            "category": "Desserts",
             "meal": "Pineapple Upside Down Cake",
             "description": "Moist cake topped with caramelized pineapple and cherries, served warm.",
             "protein": 4,
@@ -426,11 +442,11 @@
         },
         {
             "category": "Desserts",
-            "meal": "Black Forest Cake",
-            "description": "Decadent chocolate cake layered with whipped cream and cherries.",
-            "protein": 5,
-            "sugar": 35,
-            "carbs": 40
+            "meal": "Red Velvet Cupcakes",
+            "description": "Moist red velvet cupcakes topped with cream cheese frosting and sprinkles.",
+            "protein": 3,
+            "sugar": 22,
+            "carbs": 30
         },
         {
             "category": "Desserts",
@@ -442,43 +458,19 @@
         },
         {
             "category": "Desserts",
-            "meal": "Cinnamon Roll",
-            "description": "Soft and fluffy cinnamon roll topped with cream cheese frosting.",
-            "protein": 3,
+            "meal": "Tiramisu",
+            "description": "Classic Italian dessert made with layers of coffee-soaked ladyfingers and mascarpone cheese.",
+            "protein": 6,
             "sugar": 20,
             "carbs": 35
         },
         {
             "category": "Desserts",
-            "meal": "Molten Lava Cake",
-            "description": "Warm chocolate cake with a gooey chocolate center, served with vanilla ice cream.",
-            "protein": 4,
-            "sugar": 30,
-            "carbs": 40
-        },
-        {
-            "category": "Desserts",
-            "meal": "Chocolate Chip Cookies",
-            "description": "Classic chocolate chip cookies, warm and gooey from the oven.",
-            "protein": 2,
-            "sugar": 15,
-            "carbs": 25
-        },
-        {
-            "category": "Desserts",
-            "meal": "Baklava",
-            "description": "Layers of flaky pastry filled with nuts and sweetened with honey syrup.",
-            "protein": 4,
+            "meal": "Whole plum in champagne.",
+            "description": "Whole plum in champagne.",
+            "protein": 3,
             "sugar": 25,
-            "carbs": 40
-        },
-        {
-            "category": "Desserts",
-            "meal": "Mango Sorbet",
-            "description": "Refreshing mango sorbet made with ripe mangoes and sugar.",
-            "protein": 1,
-            "sugar": 30,
-            "carbs": 35
+            "carbs": 30
         }
     ]
 }
