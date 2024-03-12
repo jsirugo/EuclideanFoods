@@ -1,7 +1,24 @@
 Vue.createApp({
 
     methods: {
-
+        combinedData() {
+            let combinedData = { protein: 0, sugar: 0, carbs: 0 };
+        
+            this.plannedMeals.forEach(meal => {
+                if (meal.isOpen) { // Gamla combined data slängde ihop alla värden. nya slänger ihop värden om öppen.
+                    meal.meals.forEach(mealName => {
+                        const selectedMeal = this.foodData.find(food => food.meal === mealName);
+                        if (selectedMeal) {
+                            combinedData.protein += selectedMeal.protein || 0;
+                            combinedData.sugar += selectedMeal.sugar || 0;
+                            combinedData.carbs += selectedMeal.carbs || 0;
+                        }
+                    });
+                }
+            });
+        
+            return combinedData;
+        },
         createPieSlice(percentage, color, startAngle) {
             const svgNS = "http://www.w3.org/2000/svg";
             // Uträkningen för hur stora pajbitarna är i förhållande till varandra
@@ -32,24 +49,18 @@ Vue.createApp({
             // Tittar efter existerande cirkeldiagram och om där, tar bort befintlig
             const existingSVGs = document.querySelectorAll("#app svg");
             existingSVGs.forEach(svg => svg.remove());
-
             // Vad jag förstår nödvändiga steg för att SVG element ska fungera alls
             // Skapar ett nytt SVG element med namnet svg
             var svgNS = "http://www.w3.org/2000/svg";
             var svg = document.createElementNS(svgNS, "svg");
-
             // Ger värdet för storleken till själva cirkeldiagrammet
             svg.setAttribute("viewBox", "0 0 32 32");
             svg.setAttribute("width", "150");
             svg.setAttribute("height", "150");
-
-       
-
             // tar värdena från måltiden när den väljs och ställer om dessa från noll till givet värde
             var protein = this.selectedMeal.protein || 0;
             var sugar = this.selectedMeal.sugar || 0;
             var carbs = this.selectedMeal.carbs || 0;
-
             // Räknar ut procenten av alla variabler istället för råa siffror
             // då detta gör ritandet av pajbitar oändligt mycket lättare
             var total = protein + sugar + carbs;
@@ -78,7 +89,89 @@ Vue.createApp({
             nutrientsAndSVGContainer.appendChild(svg);
 
         },
-      
+        ClearPie(){
+            const combinedPieChartContainer = document.getElementById("combinedPieChart");
+                combinedPieChartContainer.innerHTML = '';
+        },
+        generateCombinedPie() {
+            const combinedData = this.combinedDataAllMeals; // Accessing computed property value
+            this.combinedOnOpenPieSVG(combinedData); // Call method with computed data
+          },
+          combinedOnOpenPieSVG(combinedAllData) {
+            if (this.isPieActive === true) {
+                
+                const svgNS = "http://www.w3.org/2000/svg";
+               
+                let totalCombined = 0; 
+                if (combinedAllData) {
+                    totalCombined = combinedAllData.protein + combinedAllData.sugar + combinedAllData.carbs;
+                } 
+                else {
+                    const combinedData = this.combinedData();
+                    totalCombined = combinedData.protein + combinedData.sugar + combinedData.carbs;
+                }
+
+                const combinedColors = ["#ff9999", "#66b3ff", "#99ff99"];
+                const combinedSVG = document.createElementNS(svgNS, "svg");
+
+                combinedSVG.setAttribute("viewBox", "0 0 32 32");
+                combinedSVG.setAttribute("width", "150");
+                combinedSVG.setAttribute("height", "150");
+        
+                const combinedPieChartContainer = document.getElementById("combinedPieChart");
+                combinedPieChartContainer.innerHTML = '';
+        
+                let combinedStartAngle = -90;
+
+                let dataToUse;
+                if (combinedAllData) {
+                    dataToUse = combinedAllData;
+                } 
+                else {
+                    dataToUse = this.combinedData();
+                }
+                for (const nutrient of ["protein", "sugar", "carbs"]) {
+                    const percentage = dataToUse[nutrient] / totalCombined * 100;
+                    const slice = this.createPieSlice(percentage, combinedColors[["protein", "sugar", "carbs"].indexOf(nutrient)], combinedStartAngle); 
+                    combinedStartAngle += percentage * 360 / 100;
+                    combinedSVG.appendChild(slice); 
+                }
+        
+                combinedPieChartContainer.appendChild(combinedSVG);
+                this.isPieActive = false;
+            }
+        },
+            // Same code as method above but
+        //     combinedOnOpenPieAllMealsSVG(combinedalldata) {
+        //     if (this.isPieActive === true) {
+          
+        //       const svgNS = "http://www.w3.org/2000/svg";
+          
+        //       var totalCombined = this.combinedalldata;
+          
+        //       var combinedColors = ["#ff9999", "#66b3ff", "#99ff99"];
+          
+        //       const combinedSVG = document.createElementNS(svgNS, "svg");
+        //       combinedSVG.setAttribute("viewBox", "0 0 32 32");
+        //       combinedSVG.setAttribute("width", "150");
+        //       combinedSVG.setAttribute("height", "150");
+          
+        //       const combinedPieChartContainer = document.getElementById("combinedPieChart");
+        //       combinedPieChartContainer.innerHTML = "";
+        
+        //       var combinedStartAngle = -90;
+        //       for (let nutrient of ["protein", "sugar", "carbs"]) {
+        //         let percentage = (this.combinedDataAllMeals[nutrient] / totalCombined) * 100;
+        //         let slice = this.createPieSlice(percentage, combinedColors[["protein", "sugar", "carbs"].indexOf(nutrient)], combinedStartAngle); 
+        //         combinedStartAngle += percentage * 360 / 100;
+        //         combinedSVG.appendChild(slice); 
+        //       }
+          
+        //       combinedPieChartContainer.appendChild(combinedSVG);
+          
+        //       this.isPieActive = false; 
+        //     }
+        //   },
   
         updateSelectedFood(category) {
             if (category !== 'Appetizers') this.selectedAppetizer = '';
@@ -167,24 +260,7 @@ Vue.createApp({
             });
             return combinedData;
         },
-        combinedData() {
-          let combinedData = { protein: 0, sugar: 0, carbs: 0 };
-      
-          this.plannedMeals.forEach(meal => {
-              if (meal.isOpen) { // Gamla combined data slängde ihop alla värden. nya slänger ihop värden om öppen.
-                  meal.meals.forEach(mealName => {
-                      const selectedMeal = this.foodData.find(food => food.meal === mealName);
-                      if (selectedMeal) {
-                          combinedData.protein += selectedMeal.protein || 0;
-                          combinedData.sugar += selectedMeal.sugar || 0;
-                          combinedData.carbs += selectedMeal.carbs || 0;
-                      }
-                  });
-              }
-          });
-      
-          return combinedData;
-      },
+       
         addMealToList() {
           let mealName = null;
         
@@ -220,71 +296,7 @@ Vue.createApp({
           console.log(this.plannedMeals);
           this.mealCounter = (this.mealCounter + 1) % 3;
       },
-          combinedOnOpenPieSVG() {
-            if(this.isPieActive === true){
-                
-            const svgNS = "http://www.w3.org/2000/svg";
-            // Calculate percentages for combined chart
-            var totalCombined = this.combinedData.protein + this.combinedData.sugar + this.combinedData.carbs;
-        
-            // Colors for combined chart
-            var combinedColors = ["#ff9999", "#66b3ff", "#99ff99"];
-        
-            // Create SVG container for combined chart
-            const combinedSVG = document.createElementNS(svgNS, "svg");
-            combinedSVG.setAttribute("viewBox", "0 0 32 32");
-            combinedSVG.setAttribute("width", "150");
-            combinedSVG.setAttribute("height", "150");
-        
-            // Clear previous content
-            const combinedPieChartContainer = document.getElementById("combinedPieChart");
-            combinedPieChartContainer.innerHTML = '';
-        
-            // Create separate SVG elements for combined chart
-            var combinedStartAngle = -90;
-            for (let nutrient of ["protein", "sugar", "carbs"]) {
-                let percentage = (this.combinedData[nutrient] / totalCombined) * 100;
-                let slice = this.createPieSlice(percentage, combinedColors[["protein", "sugar", "carbs"].indexOf(nutrient)], combinedStartAngle); // Access color based on nutrient index
-                combinedStartAngle += percentage * 360 / 100;
-                combinedSVG.appendChild(slice); // Append to the combined SVG
-            }
-        
-            // Append the combined SVG to the container
-            combinedPieChartContainer.appendChild(combinedSVG);
-             this.isPieActive =false; // av någon anledning behövs denna för att kunna använda generate Pie here knappen två gånger.
-        }
-    },
-            // Same code as method above but
-            combinedOnOpenPieAllMealsSVG() {
-            if (this.isPieActive === true) {
           
-              const svgNS = "http://www.w3.org/2000/svg";
-          
-              var totalCombined = this.combinedDataAllMeals.protein + this.combinedDataAllMeals.sugar + this.combinedDataAllMeals.carbs;
-          
-              var combinedColors = ["#ff9999", "#66b3ff", "#99ff99"];
-          
-              const combinedSVG = document.createElementNS(svgNS, "svg");
-              combinedSVG.setAttribute("viewBox", "0 0 32 32");
-              combinedSVG.setAttribute("width", "150");
-              combinedSVG.setAttribute("height", "150");
-          
-              const combinedPieChartContainer = document.getElementById("combinedPieChart");
-              combinedPieChartContainer.innerHTML = "";
-        
-              var combinedStartAngle = -90;
-              for (let nutrient of ["protein", "sugar", "carbs"]) {
-                let percentage = (this.combinedDataAllMeals[nutrient] / totalCombined) * 100;
-                let slice = this.createPieSlice(percentage, combinedColors[["protein", "sugar", "carbs"].indexOf(nutrient)], combinedStartAngle); 
-                combinedStartAngle += percentage * 360 / 100;
-                combinedSVG.appendChild(slice); 
-              }
-          
-              combinedPieChartContainer.appendChild(combinedSVG);
-          
-              this.isPieActive = false; 
-            }
-          },
 //     combinedAllPieSVG() {
 //       if(this.isPieActive === true){
           
