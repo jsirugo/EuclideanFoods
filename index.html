@@ -42,12 +42,13 @@
 
 
     <main class="mainsection-grid">
-      
-      <ul v-if="selectedMeal" class="factList">
+
+      <!-- added golden text for the best maincourse -->
+      <ul v-if="selectedMeal" :class="{ 'golden-text': selectedMeal.meal === 'Palt' }" class="factList">
         <li><strong>Selected</strong>: {{ selectedMeal.meal }}</li>
         <li><strong>Description</strong>: {{ selectedMeal.description }}</li>
-      
       </ul>
+      
 
       <div v-if="selectedMeal" class="nutrients" >
 

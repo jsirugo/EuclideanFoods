@@ -167,6 +167,11 @@ li{
     display: flex;
     justify-content: end;
 }
+.golden-text {
+    color: goldenrod;
+    border-color: black;
+  }
+  
 
   
 
