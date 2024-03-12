@@ -64,11 +64,14 @@
                     <p class="combinedSugar">Sugar:{{ combinedData.sugar }}</p>
                     <p class="combinedCarbs">Carbs:{{ combinedData.carbs }}</p>
                   </li>
-                  <li id="combinedPieChart"> 
+                  <li id="combinedPieChart">
+                    
               </li> 
               
                   <li><button @click="printPie(); combinedOnOpenPieSVG; ">Generate Pie here!</button></li>
-                 
+                  <li><button @click="printPie(); combinedOnOpenPie(combinedDataAllMeals)">Generate Pie for every meal!</button></li>
+
+
                   <button @click ="resetPlannedMeals()" id="resetbutton">Delete Planned Meal</button>
                   
                 </ul>
@@ -91,7 +94,13 @@
 
       </div>
 
-
+      <div class="food-item">
+        <span>{{ food }}</span>
+        <span v-for="foodItem in foodData" :key="foodItem.meal">
+          <span v-if="foodItem.meal === food">{{ foodItem.description }}</span>
+        </span>
+      </div>
+      
       <div id="euclidPictures">
         <img id="sadeuc" src="pictures/sadeuc.webp" alt="Euclidian ☹" :style="{ opacity: isOptionSelected ? 0 : 1 }" />
         <img id="happyeuc" src="pictures/happyeuc.jpg" alt="Euclidian Happyman"
