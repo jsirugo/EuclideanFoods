@@ -1,6 +1,13 @@
 Vue.createApp({
 
     methods: {
+        //save listed items to localstorage. Called on addMealToList and  restePlannedMeal
+        loadPlannedMealsFromLocalStorage() {
+            const storedMeals = localStorage.getItem('plannedMeals');
+            if (storedMeals) {
+                this.plannedMeals = JSON.parse(storedMeals);
+            }
+        },
         combinedData() {
             let combinedData = { protein: 0, sugar: 0, carbs: 0 };
         
@@ -207,8 +214,12 @@ Vue.createApp({
               }
           });
           this.mealCounter = 0;
+          // Needed to save deletion of listitems
+          localStorage.setItem('plannedMeals', JSON.stringify(this.plannedMeals));
       },
     },
+ 
+
 
     computed: {
      
@@ -295,6 +306,8 @@ Vue.createApp({
         }
           console.log(this.plannedMeals);
           this.mealCounter = (this.mealCounter + 1) % 3;
+          // Needed to save adding of listitems
+          localStorage.setItem('plannedMeals', JSON.stringify(this.plannedMeals));
       },
           
 //     combinedAllPieSVG() {
@@ -360,12 +373,10 @@ Vue.createApp({
             .then(response => response.json())
             .then(data => {
                 this.foodData = data.fooddata;
-
-
+                this.loadPlannedMealsFromLocalStorage();
             })
             .catch(error => {
                 console.error('Error loading food data:', error);
             });
-
     }
 }).mount('#app');
