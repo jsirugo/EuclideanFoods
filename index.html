@@ -52,7 +52,7 @@
           <section v-show="hasPlannedMeals" id="foodList">
             <ul id="mealNames">
               <li v-for="meal in plannedMeals" :key="meal.name">
-              <h2 id="plannedMealsTitle">Planned Meals</h2>
+              <h2 id="plannedMealsTitle">-Meal-</h2>
                 <button>
                   <h2 @click="toggleMealList(meal);printPie(); combinedOnOpenPieSVG() ">{{ meal.name }}</h2>
                 </button>
