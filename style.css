@@ -169,17 +169,7 @@ h2{
    
   }
   
-  .foodListinfo {
-    max-height: 55px; /* Adjust the maximum height for minimized state */
-    overflow: hidden;
-    transition: max-height 0.35s ease-out;
-  }
-  
-  .foodListinfo.expanded {
-    max-height:700px; /* Adjust the maximum height for expanded state */
-  }
-
-
+ 
 .nutrients li {
     display: flex;
     flex-direction: column;
@@ -346,7 +336,7 @@ select:focus {
     }
     .foodListinfo {
         justify-content: center;
-       max-height: 0px;
+       
     }
     .foodListinfo li > * {
         justify-content: center;

@@ -61,7 +61,7 @@
                 <button>
                   <h2 @click="toggleMealList(meal); combinedOnOpenPieSVG() ">{{ meal.name }}</h2>
                 </button>
-                <ul class="foodListinfo" :class="{ 'expanded': meal.isOpen }">
+                <ul class="foodListinfo" v-if="meal.isOpen">
                   <li v-for="food in meal.meals"><span id="listedFoods">{{food}}</span></li>
                   <ul v-show="!showCombinedPieChart">
                     <li >Active meals nutrients:</li>
