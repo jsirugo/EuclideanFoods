@@ -5,35 +5,55 @@
 }
 
 html{
-    background-color: rgb(251, 246, 240);
+    background-color: #222222;
     font-family: "Inconsolata", monospace;
     font-optical-sizing: auto;
     font-style: normal;}
+li
+{
+        list-style: none;
+}
+button{
+    font-family: "Inconsolata", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+    background-color: #5b824a;
+    padding: 5px;
+    border:solid 1px rgb(239, 14, 14);
+    
+    
+}
+button:hover,
+button:focus {
+    transition: 0.3s;
+    background-color: #576e48; 
+}
 
+/* Main content */
 #h1-section{
-    background-color: rgba(104, 253, 184, 0.164);
-    /* margin: 0 auto; */
+    background-color: rgba(7, 255, 139, 0.242);
     display: flex;
-    justify-content: center; /* center flex items horizontally, in this case */
+    align-self: center;
+    justify-content: center; 
     align-items: center;
     margin-left: 10px;
     margin-top: 5px;
     margin-right: 10px;
+    min-width: 350px;
     height: 100px
 }
 #h1-box{
     display: flex;
     justify-content: center;
     align-items: center;
-    /* padding-top: 10px; */
+    padding-top: 10px;
     width: 350px;
     height: 70px;
-    border-top: 1px solid rgba(0, 0, 0, 0.387);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.387);
+    border-top: 3px solid rgba(0, 0, 0, 0.387);
+    border-bottom: 3px solid rgba(0, 0, 0, 0.387);
 
 }
 h1{
-    
     display: flex;
     font-size: 45px;
     align-self: center;
@@ -42,27 +62,6 @@ h1{
     text-decoration-color: rgb(0, 255, 136);
 }
 
-
- .selectedProtein {
-    color: #ff6384; 
-    text-decoration: underline;
-    text-decoration-color:rgb(0, 255, 136);
-    font-weight: bold;
-}
-
- .selectedSugar {
-    color: #36a2eb;
-    text-decoration: underline;
-    text-decoration-color:rgb(0, 255, 136);
-    font-weight: bold;
-}
-
- .selectedCarbs {
-    color: #ffce56; 
-    text-decoration: underline;
-    text-decoration-color:rgb(0, 255, 136);
-    font-weight: bold;
-}
 .combinedProtein {
     color: #ff9999; 
     text-decoration: underline;
@@ -83,86 +82,72 @@ h1{
     text-decoration-color:rgb(0, 47, 255);
     font-weight: bold;
 }
-
-#buttongrid{
-    padding-top: 30px;
-    gap: 20px;
-    display: grid;
-    align-content: center;
-    margin: 0 auto;
-    max-width: 400px;
-    grid-template-columns: repeat(3, 1fr) 
-    
-}
-#buttongrid >select {
-    font-family: "Inconsolata", monospace;
-    font-optical-sizing: auto;
-    font-style: normal;
-
-    min-height: 57px;
-    min-width: 120px;
-    border-radius: 10px;
-    white-space: wrap; 
+h2{
     width: 100%;
-    padding: 5px;
-    text-overflow: ellipsis;
-    justify-self: center;
 }
+
 
 #appetizers, #mainCourse, #dessert {
     text-align: center;
 
 }
-
-li{
-    list-style: none;
+#listedFoods{
+    display: flex;
+    align-self: center;
+    font-weight: bold;
+    color: #efe4b4;
+    border-bottom: 2px double green;
 }
+
 
 .mainsection-grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    
+   
 }
-.factList{
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    margin-top: 17.5px;
-    border:solid 1px;
-    border-radius: 2px;
-    max-width: 315px;
-    padding: 20px;
-    background-color: rgba(104, 253, 184, 0.164);
 
-}
 
 .nutrients {
-    
-   margin-top: 17.5px;
-    justify-content: center;
     display: grid;
-    grid-template-columns: 1fr 0.6fr 1fr;
-    gap: 30px;
+    height: 100%;
+    gap:5px;
+    color: #76b7e2;
+    font-weight: bold;
+ 
 
 }
-/* .nutrients svg {
-    justify-self: flex-start;
-    margin-left: 10px;
-    justify-content: top;
-    
-} */
-/* .nutrients ul{
-     display: flex;  
+.selectedProtein {
+    color: #ff6384; 
+    text-decoration: underline;
+    text-decoration-color:rgb(0, 255, 136);
+    font-weight: bold;
+}
+
+ .selectedSugar {
+    color: #36a2eb;
+    text-decoration: underline;
+    text-decoration-color:rgb(0, 255, 136);
+    font-weight: bold;
+}
+
+ .selectedCarbs {
+    color: #ffce56; 
+    text-decoration: underline;
+    text-decoration-color:rgb(0, 255, 136);
+    font-weight: bold;
+}
+ .nutrients ul{
+    display: flex;  
     padding: 15px;
-    border:solid 1px;
-    border-radius: 2px;
-    justify-self: center;
-    align-self: center;
+    margin:10px ;
+    border:solid green 1px;
+    border-radius: 10px;
     flex-direction: column;
     height: fit-content; 
-
+    background-color: rgba(104, 253, 184, 0.164);
 }
-*/
+
+
 #foodList{
     display: flex;
     justify-content: end;
@@ -171,54 +156,155 @@ li{
     color: goldenrod;
     border-color: black;
   }
-  
+  #listOfTotalNutrients{
+    border: 3px dotted rgb(89, 222, 79);
+  }
+  #totalNutrients{
+    padding: 5px;
+    color: rgb(15, 218, 0);
+    font-style: italic;
+    font-size: large;
+    border: 3px dotted rgb(89, 222, 79);
+   
+  }
 
-  
-
-#mealNames{
-    
-    display: flex;  
-    padding: 30px;
-   justify-self: end;
-    border:solid 1px;
-    border-radius: 2px;
-    flex-direction: column;
-    background-color: rgba(104, 253, 184, 0.164);
-}
 .nutrients li {
     display: flex;
     flex-direction: column;
-    /* text-align: center; */
     line-height: 30px;
 }
 #nutrientsandsvg{
     display: flex;  
-    padding: 15px;
-    border:solid 1px;
-    border-radius: 2px;
+    grid-column: 2;
+    border:solid green 1px;
+    border-radius: 10px;
+    align-self: center;
     align-items: center;
+    flex-direction: column;
+    max-width: 300px;
+    background-color: rgba(104, 253, 184, 0.164);
+   
+}
+#plannedMealsTitle {
+   text-align: center;
+   border-bottom: #56f256;
+   padding: 10px;
+}
+#mealNames ul>*{
+    align-items: center;
+}
+#mealNames{
+    align-self: center;
+    justify-self: center;
+}
+
+/* Buttons */
+#buttongrid{
+    display: grid;
+    padding-top: 30px;
+    gap:10px;
+    display: grid;
+    align-content: center;
     justify-self: center;
     align-self: center;
-    flex-direction: column;
-    height: fit-content;
-    width: 250px;
-    background-color: rgba(104, 253, 184, 0.164);
-
-}
-#submitButton{
-    border-radius: 2px;
-    border:solid 1px black;
-    align-self: flex-end;
+    grid-template-columns: 1fr 0.5fr 1fr;
     
-    padding: 15px;
-    width: fit-content;
-    height: fit-content;
 }
+#appetizers{
+    justify-self: flex-end;
+}
+
+#dessert{
+    justify-self: flex-start;
+}
+
+select {
+    display: flex;
+    font-family: "Inconsolata", monospace;
+    background-color: #5c844b; /* Default background color */
+    color: #efe4b4;
+    font-size: 20px;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: underline;
+    min-height: 57px;
+    max-width: 120px;
+    min-width: 200px;
+    max-height: 70px;
+    border-radius: 7px;
+    white-space: wrap; 
+    width: 100%;
+    padding: 5px;
+    text-overflow: ellipsis; 
+    justify-self: center;
+   
+}
+
+
+select:hover,
+select:focus {
+    transition: background-color 0.3s;
+    background-color: #637e50; 
+}
+#mealNames >li >button, .foodListinfo > li> button{
+    font-family: "Inconsolata", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+    border-radius:5px;
+    background-color:#5c844b; 
+    color: #efe4b4;
+    border:solid 1px rgb(104, 239, 14);
+}
+.foodListinfo > li> button{
+    width: 100%;
+    padding:5px;
+    margin: 5px;
+}
+#resetbutton{
+    color: rgb(78, 1, 1);
+}
+#mealNames >li{
+    justify-content: center;
+}
+
+
+.AddAndDeleteAllButtons{
+    display: flex;
+    flex-direction: column;
+   
+    border-radius: 2px;
+
+    align-self: center;
+    padding: 5px;
+    min-width: 50px;
+    max-width: 50vw;
+    /* height: fit-content; */
+}
+.AddAndDeleteAllButtons > button{
+    padding: 5px;
+    margin: 10px;
+    margin-right: 5px;
+    min-width: 145px;
+    border-radius: 10px;
+}
+#deleteAllMealsButton{
+    color: rgb(167, 7, 7);
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration-color: #222222;
+}
+#addMealToListButton{
+    font-size: 20px;
+    color: rgb(72, 213, 72);
+}
+
+
+/* Pictures  */
 #euclidPictures {
     display: flex;
     justify-content: center;
 }
-
 #euclidPictures img {
     width: 300px; 
     height: auto; 
@@ -227,34 +313,120 @@ li{
     opacity: 1; 
     transition: opacity 10s;
 }
-@media screen and (max-width: 665px){
-    
-    #buttongrid{
-        max-width: 280px;
-        grid-template-columns: repeat(1, 1fr) 
-    }
-    #foodList{
-        justify-content: center;
-    }
-    #nutrientsandsvg{
-        grid-row: 1;
-    }
-    .nutrients{
-        gap: 10px;
-        grid-template-columns: repeat(1,1fr);
-        justify-content: center;
 
+
+
+@media screen and (max-width: 800px) {
+    #buttongrid {
+        /* max-width: 280px; */
+        grid-template-columns: repeat(1, 1fr);
     }
-    #submitButton{
-        grid-row: 2;
+   
+    #appetizers{
         justify-self: center;
-        
     }
-   #sadeuc,#happyeuc{
     
-    max-width: 250px;
-    
-    
-   }
+    #dessert{
+        justify-self:center;
+    }
+    #foodList {
+        justify-content: center;
+    }
+    .foodListinfo {
+        justify-content: center;
+        text-align: center;
+    }
+    .foodListinfo li > * {
+        justify-content: center;
+    }
+    .nutrients {
+        display: flex; /* Change to a flex layout */
+        flex-direction: column; /* Ensure a single column layout */
+        align-items: center; /* Center align items */
+       
+    }
+    #nutrientsandsvg {
+       order: -1; /* Move above mealNames */
+       min-width: 400px;
+       
+    }
 
+    #mealNames {
+        order: 1; /* Move below nutrientsandsvg */
+        min-width: 400px;
+    }
+  
+    
+    .AddAndDeleteAllButtons > button {
+        align-self: center;
+        padding: 5px;
+        margin: 5px;
+        margin-right: 5px;
+        border-radius: 10px;
+    }
+    #sadeuc,
+    #happyeuc {
+        max-width: 250px;
+    }
 }
+
+@media screen and (max-width: 450px) {
+    #buttongrid {
+        min-width: 400px;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .mainsection-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        margin: 0 auto;
+    }
+    #appetizers{
+        justify-self: center;
+    }
+    
+    #dessert{
+        justify-self:center;
+    }
+    #foodList {
+        justify-content: center;
+    }
+    .foodListinfo {
+        justify-content: center;
+        text-align: center;
+    }
+    .foodListinfo li > * {
+        justify-content: center;
+    }
+    #nutrientsandsvg {
+        grid-row: 2;
+        text-align: center;
+        width: 90vw;
+      
+    }
+    .nutrients {
+        gap: 10px;
+        grid-template-columns: repeat(1, 2fr);
+        justify-content: center;
+    }
+    .AddAndDeleteAllButtons {
+        grid-row: 1;
+        justify-self: center;
+        min-width: none;
+    }
+   
+    /* .AddAndDeleteAllButtons > button {
+        align-self: center;
+        min-width: 40px;
+        padding: 5px;
+        margin: 5px;
+        margin-right: 5px;
+        border-radius: 10px;
+    }
+    #sadeuc,
+    #happyeuc {
+        max-width: 250px;
+    } */
+}
+
+    
+   

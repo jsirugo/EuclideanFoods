@@ -8,24 +8,7 @@ Vue.createApp({
                 this.plannedMeals = JSON.parse(storedMeals);
             }
         },
-        combinedData() {
-            let combinedData = { protein: 0, sugar: 0, carbs: 0 };
-        
-            this.plannedMeals.forEach(meal => {
-                if (meal.isOpen) { // Gamla combined data slängde ihop alla värden. nya slänger ihop värden om öppen.
-                    meal.meals.forEach(mealName => {
-                        const selectedMeal = this.foodData.find(food => food.meal === mealName);
-                        if (selectedMeal) {
-                            combinedData.protein += selectedMeal.protein || 0;
-                            combinedData.sugar += selectedMeal.sugar || 0;
-                            combinedData.carbs += selectedMeal.carbs || 0;
-                        }
-                    });
-                }
-            });
-        
-            return combinedData;
-        },
+       
         createPieSlice(percentage, color, startAngle) {
             const svgNS = "http://www.w3.org/2000/svg";
             // Uträkningen för hur stora pajbitarna är i förhållande till varandra
@@ -100,11 +83,26 @@ Vue.createApp({
             const combinedPieChartContainer = document.getElementById("combinedPieChart");
                 combinedPieChartContainer.innerHTML = '';
         },
-        generateCombinedPie() {
-            const combinedData = this.combinedDataAllMeals; // Accessing computed property value
-            this.combinedOnOpenPieSVG(combinedData); // Call method with computed data
-          },
-          combinedOnOpenPieSVG(combinedAllData) {
+       
+        combinedData() {
+            let combinedData = { protein: 0, sugar: 0, carbs: 0 };
+        
+            this.plannedMeals.forEach(meal => {
+                if (meal.isOpen) { // Gamla combined data slängde ihop alla värden. nya slänger ihop värden om öppen.
+                    meal.meals.forEach(mealName => {
+                        const selectedMeal = this.foodData.find(food => food.meal === mealName);
+                        if (selectedMeal) {
+                            combinedData.protein += selectedMeal.protein || 0;
+                            combinedData.sugar += selectedMeal.sugar || 0;
+                            combinedData.carbs += selectedMeal.carbs || 0;
+                        }
+                    });
+                }
+            });
+        
+            return combinedData;
+        },
+        combinedOnOpenPieSVG(combinedAllData) {
             if (this.isPieActive === true) {
                 
                 const svgNS = "http://www.w3.org/2000/svg";
@@ -118,7 +116,7 @@ Vue.createApp({
                     totalCombined = combinedData.protein + combinedData.sugar + combinedData.carbs;
                 }
 
-                const combinedColors = ["#ff9999", "#66b3ff", "#99ff99"];
+                const combinedColors = ["#ff9999", "#4fa4f9", "#56f256"];
                 const combinedSVG = document.createElementNS(svgNS, "svg");
 
                 combinedSVG.setAttribute("viewBox", "0 0 32 32");
@@ -136,6 +134,7 @@ Vue.createApp({
                 } 
                 else {
                     dataToUse = this.combinedData();
+                    this.showCombinedPieChart = false;
                 }
                 for (const nutrient of ["protein", "sugar", "carbs"]) {
                     const percentage = dataToUse[nutrient] / totalCombined * 100;
@@ -146,40 +145,11 @@ Vue.createApp({
         
                 combinedPieChartContainer.appendChild(combinedSVG);
                 this.isPieActive = false;
+               
             }
         },
-            // Same code as method above but
-        //     combinedOnOpenPieAllMealsSVG(combinedalldata) {
-        //     if (this.isPieActive === true) {
-          
-        //       const svgNS = "http://www.w3.org/2000/svg";
-          
-        //       var totalCombined = this.combinedalldata;
-          
-        //       var combinedColors = ["#ff9999", "#66b3ff", "#99ff99"];
-          
-        //       const combinedSVG = document.createElementNS(svgNS, "svg");
-        //       combinedSVG.setAttribute("viewBox", "0 0 32 32");
-        //       combinedSVG.setAttribute("width", "150");
-        //       combinedSVG.setAttribute("height", "150");
-          
-        //       const combinedPieChartContainer = document.getElementById("combinedPieChart");
-        //       combinedPieChartContainer.innerHTML = "";
-        
-        //       var combinedStartAngle = -90;
-        //       for (let nutrient of ["protein", "sugar", "carbs"]) {
-        //         let percentage = (this.combinedDataAllMeals[nutrient] / totalCombined) * 100;
-        //         let slice = this.createPieSlice(percentage, combinedColors[["protein", "sugar", "carbs"].indexOf(nutrient)], combinedStartAngle); 
-        //         combinedStartAngle += percentage * 360 / 100;
-        //         combinedSVG.appendChild(slice); 
-        //       }
-          
-        //       combinedPieChartContainer.appendChild(combinedSVG);
-          
-        //       this.isPieActive = false; 
-        //     }
-        //   },
-  
+      
+      
         updateSelectedFood(category) {
             if (category !== 'Appetizers') this.selectedAppetizer = '';
             if (category !== 'Main Courses') this.selectedMainCourse = '';
@@ -200,10 +170,7 @@ Vue.createApp({
             meal.isOpen = !meal.isOpen;
           
           },
-        // togglePieRender() { 
-        //     this.isPieActive = !this.isPieActive; 
-        //     console.log;
-        // },
+       
         printPie(){
             this.isPieActive = true;
         },
@@ -217,12 +184,24 @@ Vue.createApp({
           // Needed to save deletion of listitems
           localStorage.setItem('plannedMeals', JSON.stringify(this.plannedMeals));
       },
+      deleteAllInMeals() {
+        // clear
+        this.plannedMeals = [];
+        // Remove the mealCounter
+        localStorage.removeItem('mealCounter');
+        // save updated plannedmeals
+        localStorage.setItem('plannedMeals', JSON.stringify(this.plannedMeals));
     },
- 
-
+    saveMealCounterToLocalStorage() {
+        localStorage.setItem('mealCounter', this.mealCounter.toString());
+    },
+    toggleCombinedPieChartVisibility() {
+        this.showCombinedPieChart = !this.showCombinedPieChart;
+    },
+    },
 
     computed: {
-     
+        
         hasPlannedMeals() {
             return this.plannedMeals.length > 0;
           },
@@ -240,9 +219,7 @@ Vue.createApp({
 
             return this.foodData.find(food => food.meal === selected);
         },
-        foodListOpacity() {
-            return this.plannedMeals.length >= 1 ? 1 : 0;
-        },
+       
         // combineAllData() {
         //     let AllcombinedData = { protein: 0, sugar: 0, carbs: 0 };
         //     this.plannedMeals.forEach(meal => {
@@ -273,85 +250,63 @@ Vue.createApp({
         },
        
         addMealToList() {
-          let mealName = null;
+            let mealName = '';
         
-          if (this.mealCounter === 0 || mealName === "" ){
-            mealName = prompt("Choose a name for planned meal!");
-          }
+            // ladda mealcounter från localstorage
+            if (localStorage.getItem('mealCounter')) {
+                this.mealCounter = parseInt(localStorage.getItem('mealCounter'));
+            } else {
+                this.mealCounter = 0;
+            }
         
-          const existingMeal = this.plannedMeals.find(meal => meal.meals.includes(this.selectedMeal.meal));
-          if (existingMeal) {
-            alert("Meal already exists in the list!");
-            return;
-          }
+            if (this.mealCounter === 0) {
+                mealName = prompt("Choose a name for planned meal!");
+            }
+            if (mealName === null) {
+                return; // do nothing if cancel
+            }
         
-          const lastPlannedMeal = this.plannedMeals[this.plannedMeals.length - 1];
-          if (lastPlannedMeal && lastPlannedMeal.meals.length < 3) {
-            // Add meal to the last planned meal
-            lastPlannedMeal.meals.push(this.selectedMeal.meal);
-        } else {
-          const isOpenMeal = this.plannedMeals.find(meal => meal.isOpen);
-          if (isOpenMeal) {
-            isOpenMeal.isOpen = false; // stäng
-          }
-
-            // Create a new planned meal if the last one is full or undefined
-            const newPlannedMeal = {
-                name: mealName,
-                meals: [this.selectedMeal.meal],
-                isOpen: true,
-            };
+            const existingMeal = this.plannedMeals.find(meal => meal.meals.includes(this.selectedMeal.meal));
+            if (existingMeal && existingMeal.isOpen) {
+                alert("Meal already exists in the list!");
+                return;
+            }
         
-            this.plannedMeals.push(newPlannedMeal);
-        }
-          console.log(this.plannedMeals);
-          this.mealCounter = (this.mealCounter + 1) % 3;
-          // Needed to save adding of listitems
-          localStorage.setItem('plannedMeals', JSON.stringify(this.plannedMeals));
-      },
-          
-//     combinedAllPieSVG() {
-//       if(this.isPieActive === true){
-          
-//       const svgNS = "http://www.w3.org/2000/svg";
-//       // Calculate percentages for combined chart
-//       var totalCombined = this.combineAllData.protein + this.combineAllData.sugar + this.combineAllData.carbs;
-  
-//       // Colors for combined chart
-//       var combinedColors = ["#ff9999", "#66b3ff", "#99ff99"];
-  
-//       // Create SVG container for combined chart
-//       const allCombinedSVG = document.createElementNS(svgNS, "svg");
-//       allCombinedSVG.setAttribute("viewBox", "0 0 32 32");
-//       allCombinedSVG.setAttribute("width", "150");
-//       allCombinedSVG.setAttribute("height", "150");
-  
-//       // Clear previous content
-//       const AllPieChartContainer = document.getElementById("allCombinedData");
-//       AllPieChartContainer.innerHTML = '';
-  
-//       // Create separate SVG elements for combined chart
-//       var combinedStartAngle = -90;
-//       for (let nutrient of ["protein", "sugar", "carbs"]) {
-//           let percentage = (this.combineAllData[nutrient] / totalCombined) * 100;
-//           let slice = this.createPieSlice(percentage, combinedColors[["protein", "sugar", "carbs"].indexOf(nutrient)], combinedStartAngle); // Access color based on nutrient index
-//           combinedStartAngle += percentage * 360 / 100;
-//           combinedSVG.appendChild(slice); // Append to the combined SVG
-//       }
-  
-//       // Append the combined SVG to the container
-//       AllPieChartContainer.appendChild(combinedSVG);
-//       //  this.isPieActive = false; // av någon anledning behövs denna för att kunna använda generate Pie here knappen två gånger.
-//   }
-// },
-
+            const lastPlannedMeal = this.plannedMeals[this.plannedMeals.length - 1];
+            if (lastPlannedMeal && lastPlannedMeal.meals.length < 3) {
+                // Add meal to the last planned meal
+                lastPlannedMeal.meals.push(this.selectedMeal.meal);
+            } else {
+                const isOpenMeal = this.plannedMeals.find(meal => meal.isOpen);
+                if (isOpenMeal) {
+                    isOpenMeal.isOpen = false; // stäng
+                }
+        
+                // skapa nytt planerat meal objekt och pusha till plannedmeals
+                const newPlannedMeal = {
+                    name: mealName,
+                    meals: [this.selectedMeal.meal],
+                    isOpen: true,
+                };
+        
+                this.plannedMeals.push(newPlannedMeal);
+            }
+            console.log(this.plannedMeals);
+            this.mealCounter = (this.mealCounter + 1) % 3;
+        
+            // Save the updated mealCounter to local storage
+            localStorage.setItem('mealCounter', this.mealCounter.toString());
+            // Needed to save adding of listitems
+            localStorage.setItem('plannedMeals', JSON.stringify(this.plannedMeals));
+        },
+        
 
     },
 
     data() {
         return {
-            //Får frälsares (euklides) spawn
-            
+          
+              //Får frälsares (euklides) spawn
             isOptionSelected: false,
             isPieActive:false,
             title: "Euclidian Foods",
@@ -361,9 +316,9 @@ Vue.createApp({
             mealCounter: 0,
             foodData: [],   
             plannedMeals: [],
-            selectedMealsForPie: [],
             foodListOpacity: 1,
-            
+            showCombinedPieChart: false 
+          
 
         };
     },
