@@ -172,7 +172,7 @@ h2{
   .foodListinfo {
     max-height: 55px; /* Adjust the maximum height for minimized state */
     overflow: hidden;
-    transition: max-height 0.2s ease-out;
+    transition: max-height 0.35s ease-out;
   }
   
   .foodListinfo.expanded {
@@ -337,43 +337,37 @@ select:focus {
         grid-template-columns: repeat(1, 1fr);
     }
    
-    #appetizers{
+    #appetizers,#dessert{
         justify-self: center;
     }
     
-    #dessert{
-        justify-self:center;
-    }
     #foodList {
         justify-content: center;
     }
     .foodListinfo {
         justify-content: center;
-        text-align: center;
+       max-height: 0px;
     }
     .foodListinfo li > * {
         justify-content: center;
     }
     .nutrients {
-        display: flex; /* Change to a flex layout */
-        flex-direction: column; /* Ensure a single column layout */
-        align-items: center; /* Center align items */
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
        
     }
     #nutrientsandsvg {
-       order: -1; /* Move above mealNames */
-       /* min-width: 400px; */
+       order: -1; 
        min-width: 400px;
        
     }
-
     #mealNames {
         order: 1; /* Move below nutrientsandsvg */
         min-width: 400px;
         
     }
   
-    
     .AddAndDeleteAllButtons > button {
         align-self: center;
         padding: 5px;
@@ -381,7 +375,6 @@ select:focus {
         margin-right: 5px;
         border-radius: 10px;
     }
-    
 }
 
 @media screen and (max-width: 450px) {

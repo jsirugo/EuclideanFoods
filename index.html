@@ -106,7 +106,7 @@
           <li class="selectedCarbs">Carbs:{{selectedMeal.carbs }}g</li>
           <li id="svgContainer"></li>
           <li> <div class="AddAndDeleteAllButtons">
-            <button id="addMealToListButton" @click="addMealToList();  ">Add:{{
+            <button id="addMealToListButton" @click="addMealToList();">Add:{{
               selectedMeal.meal }} to list✅</button>
             <button id="deleteAllMealsButton" @click="deleteAllInMeals()" v-if="hasPlannedMeals">❌Delete All Meals❌</button>
           </div></li>
