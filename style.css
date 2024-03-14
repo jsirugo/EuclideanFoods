@@ -157,6 +157,7 @@ h2{
     border-color: black;
   }
   #listOfTotalNutrients{
+    
     border: 3px dotted rgb(89, 222, 79);
   }
   #totalNutrients{
@@ -167,11 +168,23 @@ h2{
     border: 3px dotted rgb(89, 222, 79);
    
   }
+  
+  .foodListinfo {
+    max-height: 55px; /* Adjust the maximum height for minimized state */
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+  
+  .foodListinfo.expanded {
+    max-height:700px; /* Adjust the maximum height for expanded state */
+  }
+
 
 .nutrients li {
     display: flex;
     flex-direction: column;
     line-height: 30px;
+    font-size: 20px;
 }
 #nutrientsandsvg{
     display: flex;  
@@ -181,7 +194,7 @@ h2{
     align-self: center;
     align-items: center;
     flex-direction: column;
-    max-width: 300px;
+    max-width: 400px;
     background-color: rgba(104, 253, 184, 0.164);
    
 }
@@ -194,20 +207,19 @@ h2{
     align-items: center;
 }
 #mealNames{
-    align-self: center;
-    justify-self: center;
+    min-width: 400px;
 }
 
 /* Buttons */
 #buttongrid{
     display: grid;
     padding-top: 30px;
-    gap:10px;
+    gap:15px;
     display: grid;
     align-content: center;
     justify-self: center;
     align-self: center;
-    grid-template-columns: 1fr 0.5fr 1fr;
+    grid-template-columns: 1fr 0.3fr 1fr;
     
 }
 #appetizers{
@@ -254,6 +266,7 @@ select:focus {
     border-radius:5px;
     background-color:#5c844b; 
     color: #efe4b4;
+    font-size: 18px;
     border:solid 1px rgb(104, 239, 14);
 }
 .foodListinfo > li> button{
@@ -304,6 +317,8 @@ select:focus {
 #euclidPictures {
     display: flex;
     justify-content: center;
+    height: 320px;
+    
 }
 #euclidPictures img {
     width: 300px; 
@@ -347,6 +362,7 @@ select:focus {
     }
     #nutrientsandsvg {
        order: -1; /* Move above mealNames */
+       /* min-width: 400px; */
        min-width: 400px;
        
     }
@@ -354,6 +370,7 @@ select:focus {
     #mealNames {
         order: 1; /* Move below nutrientsandsvg */
         min-width: 400px;
+        
     }
   
     
@@ -364,10 +381,7 @@ select:focus {
         margin-right: 5px;
         border-radius: 10px;
     }
-    #sadeuc,
-    #happyeuc {
-        max-width: 250px;
-    }
+    
 }
 
 @media screen and (max-width: 450px) {
@@ -408,24 +422,9 @@ select:focus {
         grid-template-columns: repeat(1, 2fr);
         justify-content: center;
     }
-    .AddAndDeleteAllButtons {
-        grid-row: 1;
-        justify-self: center;
-        min-width: none;
-    }
+
    
-    /* .AddAndDeleteAllButtons > button {
-        align-self: center;
-        min-width: 40px;
-        padding: 5px;
-        margin: 5px;
-        margin-right: 5px;
-        border-radius: 10px;
-    }
-    #sadeuc,
-    #happyeuc {
-        max-width: 250px;
-    } */
+   
 }
 
     

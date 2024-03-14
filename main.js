@@ -8,7 +8,61 @@ Vue.createApp({
                 this.plannedMeals = JSON.parse(storedMeals);
             }
         },
-       
+        addMealToList() {
+            let mealName = '';
+            
+            // Load mealCounter from localStorage
+            if (localStorage.getItem('mealCounter')) {
+                this.mealCounter = parseInt(localStorage.getItem('mealCounter'));
+            } else {
+                this.mealCounter = 0;
+            }
+        
+            // Prompt for meal name only if mealCounter is 0
+            if (this.mealCounter === 0) {
+                mealName = prompt("Choose a name for planned meal!");
+                if (mealName === null ||mealName==='') {
+                    // Reset mealCounter and return if cancel
+                    this.mealCounter = 0;
+                    localStorage.setItem('mealCounter', this.mealCounter.toString());
+                    console.log(this.mealCounter);
+                    return; 
+                }
+            }
+        
+            const existingMeal = this.plannedMeals.find(meal => meal.meals.includes(this.selectedMeal.meal));
+            if (existingMeal && existingMeal.isOpen) {
+                alert("Meal already exists in the list!");
+                return;
+            }
+        
+            const lastPlannedMeal = this.plannedMeals[this.plannedMeals.length - 1];
+            if (lastPlannedMeal && lastPlannedMeal.meals.length < 3) {
+                // Add meal to the last planned meal
+                lastPlannedMeal.meals.push(this.selectedMeal.meal);
+            } else {
+                const isOpenMeal = this.plannedMeals.find(meal => meal.isOpen);
+                if (isOpenMeal) {
+                    isOpenMeal.isOpen = false; // close
+                }
+        
+                // Create a new planned meal object and push it to plannedMeals
+                const newPlannedMeal = {
+                    name: mealName,
+                    meals: [this.selectedMeal.meal],
+                    isOpen: true,
+                };
+        
+                this.plannedMeals.push(newPlannedMeal);
+            }
+            console.log(this.plannedMeals);
+            this.mealCounter = (this.mealCounter + 1) % 3;
+        
+            // Save the updated mealCounter to local storage
+            localStorage.setItem('mealCounter', this.mealCounter.toString());
+            // Save the updated plannedMeals to local storage
+            localStorage.setItem('plannedMeals', JSON.stringify(this.plannedMeals));
+        },
         createPieSlice(percentage, color, startAngle) {
             const svgNS = "http://www.w3.org/2000/svg";
             // Uträkningen för hur stora pajbitarna är i förhållande till varandra
@@ -74,7 +128,7 @@ Vue.createApp({
             svg.appendChild(sugarSlice);
             svg.appendChild(carbsSlice);
 
-            const nutrientsAndSVGContainer = document.getElementById("nutrientsandsvg");
+            const nutrientsAndSVGContainer = document.getElementById("svgContainer");
            
             nutrientsAndSVGContainer.appendChild(svg);
 
@@ -103,7 +157,7 @@ Vue.createApp({
             return combinedData;
         },
         combinedOnOpenPieSVG(combinedAllData) {
-            if (this.isPieActive === true) {
+           
                 
                 const svgNS = "http://www.w3.org/2000/svg";
                
@@ -146,7 +200,7 @@ Vue.createApp({
                 combinedPieChartContainer.appendChild(combinedSVG);
                 this.isPieActive = false;
                
-            }
+            
         },
       
       
@@ -171,9 +225,9 @@ Vue.createApp({
           
           },
        
-        printPie(){
-            this.isPieActive = true;
-        },
+        // printPie(){
+        //     this.isPieActive = true;
+        // },
         resetPlannedMeals() {
           this.plannedMeals.forEach((meal, index) => {
               if (meal.isOpen) {
@@ -181,6 +235,7 @@ Vue.createApp({
               }
           });
           this.mealCounter = 0;
+          localStorage.removeItem('mealCounter');
           // Needed to save deletion of listitems
           localStorage.setItem('plannedMeals', JSON.stringify(this.plannedMeals));
       },
@@ -249,56 +304,6 @@ Vue.createApp({
             return combinedData;
         },
        
-        addMealToList() {
-            let mealName = '';
-        
-            // ladda mealcounter från localstorage
-            if (localStorage.getItem('mealCounter')) {
-                this.mealCounter = parseInt(localStorage.getItem('mealCounter'));
-            } else {
-                this.mealCounter = 0;
-            }
-        
-            if (this.mealCounter === 0) {
-                mealName = prompt("Choose a name for planned meal!");
-            }
-            if (mealName === null) {
-                return; // do nothing if cancel
-            }
-        
-            const existingMeal = this.plannedMeals.find(meal => meal.meals.includes(this.selectedMeal.meal));
-            if (existingMeal && existingMeal.isOpen) {
-                alert("Meal already exists in the list!");
-                return;
-            }
-        
-            const lastPlannedMeal = this.plannedMeals[this.plannedMeals.length - 1];
-            if (lastPlannedMeal && lastPlannedMeal.meals.length < 3) {
-                // Add meal to the last planned meal
-                lastPlannedMeal.meals.push(this.selectedMeal.meal);
-            } else {
-                const isOpenMeal = this.plannedMeals.find(meal => meal.isOpen);
-                if (isOpenMeal) {
-                    isOpenMeal.isOpen = false; // stäng
-                }
-        
-                // skapa nytt planerat meal objekt och pusha till plannedmeals
-                const newPlannedMeal = {
-                    name: mealName,
-                    meals: [this.selectedMeal.meal],
-                    isOpen: true,
-                };
-        
-                this.plannedMeals.push(newPlannedMeal);
-            }
-            console.log(this.plannedMeals);
-            this.mealCounter = (this.mealCounter + 1) % 3;
-        
-            // Save the updated mealCounter to local storage
-            localStorage.setItem('mealCounter', this.mealCounter.toString());
-            // Needed to save adding of listitems
-            localStorage.setItem('plannedMeals', JSON.stringify(this.plannedMeals));
-        },
         
 
     },

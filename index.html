@@ -18,26 +18,31 @@
     <section id="h1-section">
       <div id="h1-box">
         <h1>{{ title }}</h1>
-
+        
       </div>
-
+     
     </section>
+    <div id="euclidPictures">
+      <img id="sadeuc" src="pictures/sadeuc.webp" alt="Euclidian ☹" :style="{ opacity: isOptionSelected ? 0 : 1 }" />
+      <img id="happyeuc" src="pictures/happyeuc.jpg" alt="Euclidian Happyman"
+        :style="{ opacity: isOptionSelected ? 1 : 0 }" />
+    </div>
     <div id="buttonGidLimiter">
     <div id="buttongrid">
       <select name="appetizers" id="appetizers" v-model="selectedAppetizer"
-        @change="updateSelectedFood('Appetizers'); generatePieSVG();printPie(); combinedOnOpenPieSVG()">
+        @change="updateSelectedFood('Appetizers'); generatePieSVG(); combinedOnOpenPieSVG()">
         <option value="" disabled selected hidden>Appetizers</option>
         <option v-for="food in filteredAppetizers" :value="food.meal">{{ food.meal }}</option>
       </select>
 
       <select name="mainCourses" id="mainCourse" v-model="selectedMainCourse"
-        @change="updateSelectedFood('Main Courses'); generatePieSVG();printPie(); combinedOnOpenPieSVG() ">
+        @change="updateSelectedFood('Main Courses'); generatePieSVG(); combinedOnOpenPieSVG() ">
         <option value="" disabled selected hidden>Main Course</option>
         <option v-for="food in filteredMainCourses" :value="food.meal">{{ food.meal }}</option>
       </select>
 
       <select name="desserts" id="dessert" v-model="selectedDessert"
-        @change="updateSelectedFood('Desserts'); generatePieSVG();printPie(); combinedOnOpenPieSVG()">
+        @change="updateSelectedFood('Desserts'); generatePieSVG(); combinedOnOpenPieSVG()">
         <option value="" disabled selected hidden>Dessert</option>
         <option v-for="food in filteredDesserts" :value="food.meal">{{ food.meal }}</option>
       </select>
@@ -45,40 +50,42 @@
   </div>
 
     <main class="mainsection-grid">
-
+     
       <div v-if="selectedMeal" class="nutrients">
 
-        
           <section v-show="hasPlannedMeals" id="foodList">
             <ul id="mealNames">
+              <h2 id="plannedMealsTitle">-Meals-</h2>
               <li v-for="meal in plannedMeals" :key="meal.name">
-              <h2 id="plannedMealsTitle">-Meal-</h2>
+           
                 <button>
-                  <h2 @click="toggleMealList(meal);printPie(); combinedOnOpenPieSVG() ">{{ meal.name }}</h2>
+                  <h2 @click="toggleMealList(meal); combinedOnOpenPieSVG() ">{{ meal.name }}</h2>
                 </button>
-                <ul class="foodListinfo" v-if="meal.isOpen">
+                <ul class="foodListinfo" :class="{ 'expanded': meal.isOpen }">
                   <li v-for="food in meal.meals"><span id="listedFoods">{{food}}</span></li>
-                 
+                  <ul v-show="!showCombinedPieChart">
+                    <li >Active meals nutrients:</li>
                     <li class="combinedProtein">Protein:{{ combinedData().protein }}g</li>
                     <li class="combinedSugar">Sugar:{{ combinedData().sugar }}g</li>
                     <li class="combinedCarbs">Carbs:{{ combinedData().carbs }}g</li>
-                  
+                  </ul>
 
-                  <li id="combinedPieChart"></li>
-                  
                   <ul id="listOfTotalNutrients" v-show="showCombinedPieChart">
-                    <li id="totalNutrients">Total Nutrients:</li>
+                    <li id="totalNutrients">Total Nutrients for all meals:</li>
                     <li class="combinedProtein">Protein:{{combinedDataAllMeals.protein}}g</li>
                     <li class="combinedSugar">Sugar:{{combinedDataAllMeals.sugar}}g</li>
                     <li class="combinedCarbs">Carbs:{{combinedDataAllMeals.carbs}}g</li>
 
                   </ul>
-                  <li><button @click="printPie(); combinedOnOpenPieSVG();">Generate "{{meal.name}}" Pie here!</button></li>
+                  <li id="combinedPieChart"></li>
+                  
+                 
+                  <li><button @click="combinedOnOpenPieSVG();">Generate "{{meal.name}}" Pie here!</button></li>
                   <li><button
-                      @click="printPie(); toggleCombinedPieChartVisibility(); combinedOnOpenPieSVG(combinedDataAllMeals)">Generate
+                      @click=" toggleCombinedPieChartVisibility(); combinedOnOpenPieSVG(combinedDataAllMeals)">Generate
                       Pie for every meal!</button></li>
                   <li><button id="clearPie" @click= "ClearPie()" >Clear pie</button></li>
-                  <li><button @click="resetPlannedMeals()" id="resetbutton">❌Delete Planned Meal❌</button></li>
+                  <li><button @click="resetPlannedMeals()" id="resetbutton" >❌Delete Planned Meal❌</button></li>
 
 
                 </ul>
@@ -88,39 +95,30 @@
 
           </section>
        
-
-
         <ul id="nutrientsandsvg">
           <!-- added golden text for the best maincourse -->
           <ul v-if="selectedMeal" :class="{ 'golden-text': selectedMeal.meal === 'Palt' }" class="factList">
             <li>Selected: {{selectedMeal.meal }}</li>
             <li>Description: {{selectedMeal.description }}</li>
           </ul>
-          <li class="selectedProtein">Protein: {{selectedMeal.protein }}g</li>
-          <li class="selectedSugar">Sugar: {{selectedMeal.sugar }}g</li>
-          <li class="selectedCarbs">Carbs: {{selectedMeal.carbs }}g</li>
-          <div class="AddAndDeleteAllButtons">
-            <button id="addMealToListButton" @click="addMealToList; printPie(); combinedOnOpenPieSVG()">Add:{{
+          <li class="selectedProtein">Protein:{{selectedMeal.protein }}g</li>
+          <li class="selectedSugar">Sugar:{{selectedMeal.sugar }}g</li>
+          <li class="selectedCarbs">Carbs:{{selectedMeal.carbs }}g</li>
+          <li id="svgContainer"></li>
+          <li> <div class="AddAndDeleteAllButtons">
+            <button id="addMealToListButton" @click="addMealToList();  ">Add:{{
               selectedMeal.meal }} to list✅</button>
-            <button id="deleteAllMealsButton" @click="deleteAllInMeals()">❌Delete All Meals❌</button>
-          </div>
+            <button id="deleteAllMealsButton" @click="deleteAllInMeals()" v-if="hasPlannedMeals">❌Delete All Meals❌</button>
+          </div></li>
+         
         </ul>
        
 
       </div>
 
-      <div class="food-item">
-        <span>{{ food }}</span>
-        <span v-for="foodItem in foodData" :key="foodItem.meal">
-          <span v-if="foodItem.meal === food">{{ foodItem.description }}</span>
-        </span>
-      </div>
+      
 
-      <div id="euclidPictures">
-        <img id="sadeuc" src="pictures/sadeuc.webp" alt="Euclidian ☹" :style="{ opacity: isOptionSelected ? 0 : 1 }" />
-        <img id="happyeuc" src="pictures/happyeuc.jpg" alt="Euclidian Happyman"
-          :style="{ opacity: isOptionSelected ? 1 : 0 }" />
-      </div>
+  
 
     </main>
 
