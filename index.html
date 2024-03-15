@@ -18,9 +18,9 @@
     <section id="h1-section">
       <div id="h1-box">
         <h1>{{ title }}</h1>
-        
+
       </div>
-     
+
     </section>
     <div id="euclidPictures">
       <img id="sadeuc" src="pictures/sadeuc.webp" alt="Euclidian ☹" :style="{ opacity: isOptionSelected ? 0 : 1 }" />
@@ -28,73 +28,68 @@
         :style="{ opacity: isOptionSelected ? 1 : 0 }" />
     </div>
     <div id="buttonGidLimiter">
-    <div id="buttongrid">
-      <select name="appetizers" id="appetizers" v-model="selectedAppetizer"
-        @change="updateSelectedFood('Appetizers'); generatePieSVG(); combinedOnOpenPieSVG()">
-        <option value="" disabled selected hidden>Appetizers</option>
-        <option v-for="food in filteredAppetizers" :value="food.meal">{{ food.meal }}</option>
-      </select>
+        <div id="buttongrid">
+        <select name="appetizers" id="appetizers" v-model="selectedAppetizer"
+          @change="updateSelectedFood('Appetizers'); generatePieSVG(); combinedOnOpenPieSVG()">
+          <option value="" disabled selected hidden>Appetizers</option>
+          <option v-for="food in filteredAppetizers" :value="food.meal">{{ food.meal }}</option>
+        </select>
 
-      <select name="mainCourses" id="mainCourse" v-model="selectedMainCourse"
-        @change="updateSelectedFood('Main Courses'); generatePieSVG(); combinedOnOpenPieSVG() ">
-        <option value="" disabled selected hidden>Main Course</option>
-        <option v-for="food in filteredMainCourses" :value="food.meal">{{ food.meal }}</option>
-      </select>
+        <select name="mainCourses" id="mainCourse" v-model="selectedMainCourse"
+          @change="updateSelectedFood('Main Courses'); generatePieSVG(); combinedOnOpenPieSVG() ">
+          <option value="" disabled selected hidden>Main Course</option>
+          <option v-for="food in filteredMainCourses" :value="food.meal">{{ food.meal }}</option>
+        </select>
 
-      <select name="desserts" id="dessert" v-model="selectedDessert"
-        @change="updateSelectedFood('Desserts'); generatePieSVG(); combinedOnOpenPieSVG()">
-        <option value="" disabled selected hidden>Dessert</option>
-        <option v-for="food in filteredDesserts" :value="food.meal">{{ food.meal }}</option>
-      </select>
+        <select name="desserts" id="dessert" v-model="selectedDessert"
+          @change="updateSelectedFood('Desserts'); generatePieSVG(); combinedOnOpenPieSVG()">
+          <option value="" disabled selected hidden>Dessert</option>
+          <option v-for="food in filteredDesserts" :value="food.meal">{{ food.meal }}</option>
+        </select>
+      </div>
     </div>
-  </div>
 
     <main class="mainsection-grid">
-     
-      <div v-if="selectedMeal" class="nutrients">
+      <transition-group name="expand">
+        <transition name="expand">
+          <div v-if="selectedMeal" class="nutrients">
 
-          <section v-show="hasPlannedMeals" id="foodList">
-            <ul id="mealNames">
-              <h2 id="plannedMealsTitle">-Meals-</h2>
-              <li v-for="meal in plannedMeals" :key="meal.name">
-           
-                <button>
-                  <h2 @click="toggleMealList(meal); combinedOnOpenPieSVG() ">{{ meal.name }}</h2>
-                </button>
-                <ul class="foodListinfo" v-if="meal.isOpen">
-                  <li v-for="food in meal.meals"><span id="listedFoods">{{food}}</span></li>
-                  <ul v-show="!showCombinedPieChart">
-                    <li >Active meals nutrients:</li>
-                    <li class="combinedProtein">Protein:{{ combinedData().protein }}g</li>
-                    <li class="combinedSugar">Sugar:{{ combinedData().sugar }}g</li>
-                    <li class="combinedCarbs">Carbs:{{ combinedData().carbs }}g</li>
-                  </ul>
-
-                  <ul id="listOfTotalNutrients" v-show="showCombinedPieChart">
-                    <li id="totalNutrients">Total Nutrients for all meals:</li>
-                    <li class="combinedProtein">Protein:{{combinedDataAllMeals.protein}}g</li>
-                    <li class="combinedSugar">Sugar:{{combinedDataAllMeals.sugar}}g</li>
-                    <li class="combinedCarbs">Carbs:{{combinedDataAllMeals.carbs}}g</li>
-
-                  </ul>
-                  <li id="combinedPieChart"></li>
-                  
-                 
-                  <li><button @click="combinedOnOpenPieSVG();">Generate "{{meal.name}}" Pie here!</button></li>
-                  <li><button
-                      @click=" toggleCombinedPieChartVisibility(); combinedOnOpenPieSVG(combinedDataAllMeals)">Generate
-                      Pie for every meal!</button></li>
-                  <li><button id="clearPie" @click= "ClearPie()" >Clear pie</button></li>
-                  <li><button @click="resetPlannedMeals()" id="resetbutton" >❌Delete Planned Meal❌</button></li>
-
-
-                </ul>
-
-              </li>
+            <section v-show="hasPlannedMeals" id="foodList">
+              <ul id="mealNames">
+                <h2 id="plannedMealsTitle">-Meals-</h2>
+        </transition>
+        <li v-for="meal in plannedMeals" :key="meal.name">
+          <button>
+            <h2 @click="toggleMealList(meal);">{{ meal.name }}</h2>
+          </button>
+          <transition name="expand">
+            <ul v-if="meal.isOpen" class="foodListinfo">
+              <li v-for="food in meal.meals"><span id="listedFoods">{{food}}</span></li>
+              <ul v-show="!showCombinedPieChart">
+                <li>Active meals nutrients:</li>
+                <li class="combinedProtein">Protein:{{ combinedData().protein }}g</li>
+                <li class="combinedSugar">Sugar:{{ combinedData().sugar }}g</li>
+                <li class="combinedCarbs">Carbs:{{ combinedData().carbs }}g</li>
+              </ul>
+              <ul id="listOfTotalNutrients" v-show="showCombinedPieChart">
+                <li id="totalNutrients">Total Nutrients for all meals:</li>
+                <li class="combinedProtein">Protein:{{combinedDataAllMeals.protein}}g</li>
+                <li class="combinedSugar">Sugar:{{combinedDataAllMeals.sugar}}g</li>
+                <li class="combinedCarbs">Carbs:{{combinedDataAllMeals.carbs}}g</li>
+              </ul>
+              <li id="combinedPieChart"></li>
+              <li><button @click="combinedOnOpenPieSVG();">Generate "{{meal.name}}" Pie here!</button></li>
+              <li><button
+                  @click="toggleCombinedPieChartVisibility(); combinedOnOpenPieSVG(combinedDataAllMeals)">Generate Pie
+                  for every meal!</button></li>
+              <li><button id="clearPie" @click="ClearPie()">Clear pie</button></li>
+              <li><button @click="resetPlannedMeals()" id="resetbutton">❌Delete Planned Meal❌</button></li>
             </ul>
 
-          </section>
-       
+        </li>
+
+        </ul>
+        </section>
         <ul id="nutrientsandsvg">
           <!-- added golden text for the best maincourse -->
           <ul v-if="selectedMeal" :class="{ 'golden-text': selectedMeal.meal === 'Palt' }" class="factList">
@@ -105,22 +100,25 @@
           <li class="selectedSugar">Sugar:{{selectedMeal.sugar }}g</li>
           <li class="selectedCarbs">Carbs:{{selectedMeal.carbs }}g</li>
           <li id="svgContainer"></li>
-          <li> <div class="AddAndDeleteAllButtons">
-            <button id="addMealToListButton" @click="addMealToList();">Add:{{
-              selectedMeal.meal }} to list✅</button>
-            <button id="deleteAllMealsButton" @click="deleteAllInMeals()" v-if="hasPlannedMeals">❌Delete All Meals❌</button>
-          </div></li>
-         
+          <li>
+            <div class="AddAndDeleteAllButtons">
+              <button id="addMealToListButton" @click="addMealToList();">Add:{{
+                selectedMeal.meal }} to list✅</button>
+              <button id="deleteAllMealsButton" @click="deleteAllInMeals()" v-if="hasPlannedMeals">❌Delete All
+                Meals❌</button>
+            </div>
+          </li>
+
         </ul>
-       
+        </transition>
+      </transition-group>
+  </div>
 
-      </div>
 
-      
 
-  
 
-    </main>
+
+  </main>
 
   </div>
 </body>
