@@ -60,7 +60,7 @@
         </transition>
         <li v-for="meal in plannedMeals" :key="meal.name">
           <button>
-            <h2 @click="toggleMealList(meal);">{{ meal.name }}</h2>
+            <h2 @click="toggleMealList(meal); showCombinedPieChart = false;">{{ meal.name }}</h2>
           </button>
           <transition name="expand">
             <ul v-if="meal.isOpen" class="foodListinfo">

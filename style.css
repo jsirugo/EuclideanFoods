@@ -189,7 +189,7 @@ h2 {
     padding: 5px;
     color: rgb(15, 218, 0);
     font-style: italic;
-    font-size: large;
+    font-size: 18px;
     border: 3px dotted rgb(89, 222, 79);
 
 }
@@ -226,7 +226,7 @@ h2 {
 }
 
 #mealNames {
-    min-width: 400px;
+    min-width: 426px;
 }
 
 /* Buttons */
