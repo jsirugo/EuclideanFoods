@@ -23,7 +23,6 @@ button {
     padding: 5px;
     border: solid 1px rgb(239, 14, 14);
 
-
 }
 
 .expand-enter-active,
@@ -31,7 +30,6 @@ button {
     transition: opacity 0.6s ease-out;
 }
 
-/* Define the initial and final states of the transition */
 .expand-enter-from,
 .expand-leave-to {
     opacity: 0;
@@ -120,13 +118,6 @@ h2 {
 }
 
 
-.mainsection-grid {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-
-}
-
-
 .nutrients {
     display: grid;
     height: 100%;
@@ -194,7 +185,6 @@ h2 {
 
 }
 
-
 .nutrients li {
     display: flex;
     flex-direction: column;
@@ -229,7 +219,7 @@ h2 {
     min-width: 426px;
 }
 
-/* Buttons */
+/* ----------------Buttons ------------------*/
 #buttongrid {
     display: grid;
     padding-top: 30px;
@@ -311,9 +301,7 @@ select:focus {
 .AddAndDeleteAllButtons {
     display: flex;
     flex-direction: column;
-
     border-radius: 2px;
-
     align-self: center;
     padding: 5px;
     min-width: 50px;
@@ -363,7 +351,6 @@ select:focus {
 
 @media screen and (max-width: 800px) {
     #buttongrid {
-        /* max-width: 280px; */
         grid-template-columns: repeat(1, 1fr);
     }
 
@@ -376,13 +363,9 @@ select:focus {
         justify-content: center;
     }
 
-    .foodListinfo {
+    .foodListinfo, .foodListinfo li>* {
         justify-content: center;
 
-    }
-
-    .foodListinfo li>* {
-        justify-content: center;
     }
 
     .nutrients {
@@ -394,14 +377,13 @@ select:focus {
 
     #nutrientsandsvg {
         order: -1;
-        min-width: 400px;
+        min-width: 426px;
 
     }
 
     #mealNames {
         order: 1;
-        /* Move below nutrientsandsvg */
-        min-width: 400px;
+        min-width: 426px;
 
     }
 
@@ -426,15 +408,12 @@ select:focus {
         margin: 0 auto;
     }
 
-    #appetizers {
-        justify-self: center;
-    }
-
+    #appetizers,
     #dessert {
         justify-self: center;
     }
 
-    #foodList {
+    #foodList,.foodListinfo li>*  {
         justify-content: center;
     }
 
@@ -443,14 +422,10 @@ select:focus {
         text-align: center;
     }
 
-    .foodListinfo li>* {
-        justify-content: center;
-    }
-
     #nutrientsandsvg {
         grid-row: 2;
         text-align: center;
-        width: 90vw;
+       
 
     }
 

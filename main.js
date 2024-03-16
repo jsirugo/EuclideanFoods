@@ -11,18 +11,18 @@ Vue.createApp({
         addMealToList() {
             let mealName = '';
             
-            // Load mealCounter from localStorage
+           
             if (localStorage.getItem('mealCounter')) {
                 this.mealCounter = parseInt(localStorage.getItem('mealCounter'));
             } else {
                 this.mealCounter = 0;
             }
         
-            // Prompt for meal name only if mealCounter is 0
+           
             if (this.mealCounter === 0) {
                 mealName = prompt("Choose a name for planned meal!");
                 if (mealName === null ||mealName==='') {
-                    // Reset mealCounter and return if cancel
+               
                     this.mealCounter = 0;
                     localStorage.setItem('mealCounter', this.mealCounter.toString());
                     console.log(this.mealCounter);
@@ -38,7 +38,7 @@ Vue.createApp({
         
             const lastPlannedMeal = this.plannedMeals[this.plannedMeals.length - 1];
             if (lastPlannedMeal && lastPlannedMeal.meals.length < 3) {
-                // Add meal to the last planned meal
+            
                 lastPlannedMeal.meals.push(this.selectedMeal.meal);
             } else {
                 const isOpenMeal = this.plannedMeals.find(meal => meal.isOpen);
@@ -46,7 +46,7 @@ Vue.createApp({
                     isOpenMeal.isOpen = false; // close
                 }
         
-                // Create a new planned meal object and push it to plannedMeals
+                
                 const newPlannedMeal = {
                     name: mealName,
                     meals: [this.selectedMeal.meal],
@@ -58,9 +58,9 @@ Vue.createApp({
             console.log(this.plannedMeals);
             this.mealCounter = (this.mealCounter + 1) % 3;
         
-            // Save the updated mealCounter to local storage
+            // spara mealcounter till localstorage
             localStorage.setItem('mealCounter', this.mealCounter.toString());
-            // Save the updated plannedMeals to local storage
+          // spara plannedmeals till localstorage
             localStorage.setItem('plannedMeals', JSON.stringify(this.plannedMeals));
         },
         createPieSlice(percentage, color, startAngle) {
@@ -225,9 +225,6 @@ Vue.createApp({
           
           },
        
-        // printPie(){
-        //     this.isPieActive = true;
-        // },
         resetPlannedMeals() {
           this.plannedMeals.forEach((meal, index) => {
               if (meal.isOpen) {
@@ -275,20 +272,7 @@ Vue.createApp({
             return this.foodData.find(food => food.meal === selected);
         },
        
-        // combineAllData() {
-        //     let AllcombinedData = { protein: 0, sugar: 0, carbs: 0 };
-        //     this.plannedMeals.forEach(meal => {
-        //         meal.meals.forEach(mealName => {
-        //             const selectedMeal = this.foodData.find(food => food.meal === mealName);
-        //             if (selectedMeal) {
-        //               AllcombinedData.protein += selectedMeal.protein || 0;
-        //               AllcombinedData.sugar += selectedMeal.sugar || 0;
-        //               AllcombinedData.carbs += selectedMeal.carbs || 0;
-        //             }
-        //         });
-        //     });
-        //     return combinedData;
-        // },
+       
         combinedDataAllMeals() {
             let combinedData = { protein: 0, sugar: 0, carbs: 0 };
             this.plannedMeals.forEach(meal => {
@@ -304,8 +288,6 @@ Vue.createApp({
             return combinedData;
         },
        
-        
-
     },
 
     data() {
