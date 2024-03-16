@@ -5,36 +5,48 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('add single meal', async ({ page }) => {
-   
+    // skriv monday i prompt
+    page.on('dialog', async dialog => {
+        await dialog.accept('monday');
+    });
+
     await page.click('#appetizers');
-   
-    await page.selectOption('#appetizers', 'Bruschetta'); // Replace 'Appetizer 1' with the actual option value
-   
+    await page.selectOption('#appetizers', 'Bruschetta');
     await page.click('#addMealToListButton');
-   
-    await expect(page).toHaveText('Måndag', 'Bruschetta');
+
+    await page.waitForSelector('.foodListinfo'); 
+    const mealListText = await page.textContent('.foodListinfo');
+    expect(mealListText).toContain('Bruschetta');
 });
 
 test('add three meals', async ({ page }) => {
-    
-    await page.selectOption('#appetizers', 'Bruschetta'); 
-    await page.click('#addMealToListButton');
-    await page.selectOption('#mainCourse', 'Palt'); 
-    await page.click('#addMealToListButton');
-    await page.selectOption('#dessert', 'Baklava'); 
-    await page.click('#addMealToListButton');
    
-    await expect(page).toHaveText('Tisdag', 'Bruschetta');
-    await expect(page).toHaveText('Tisdag', 'Palt');
-    await expect(page).toHaveText('Tisdag', 'Baklava');
+    page.on('dialog', async dialog => {
+        await dialog.accept('monday');
+    });
+
+    await page.selectOption('#appetizers', 'Bruschetta');
+    await page.click('#addMealToListButton');
+    await page.selectOption('#mainCourse', 'Palt');
+    await page.click('#addMealToListButton');
+    await page.selectOption('#dessert', 'Baklava');
+    await page.click('#addMealToListButton');
+
+    await page.waitForSelector('.foodListinfo'); 
+    const mealListText = await page.textContent('.foodListinfo');
+    expect(mealListText).toContain('Bruschetta');
+    expect(mealListText).toContain('Palt');
+    expect(mealListText).toContain('Baklava');
 });
 
 test('delete list', async ({ page }) => {
- 
-    await page.selectOption('#appetizers', 'Bruschetta'); 
+    page.on('dialog', async dialog => {
+        await dialog.accept('monday');
+    });
+    await page.selectOption('#appetizers', 'Bruschetta');
     await page.click('#addMealToListButton');
-    
     await page.click('#deleteAllMealsButton');
-  
-    await expect(page).not.toHaveSelector('.mealName');
+    await page.waitForSelector('.foodListinfo', { state: 'hidden' }); 
+    const mealList = await page.$('.foodListinfo');
+    expect(mealList).toBeNull();
 });
