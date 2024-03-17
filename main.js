@@ -11,14 +11,12 @@ Vue.createApp({
         addMealToList() {
             let mealName = '';
             
-           
             if (localStorage.getItem('mealCounter')) {
                 this.mealCounter = parseInt(localStorage.getItem('mealCounter'));
             } else {
                 this.mealCounter = 0;
             }
         
-           
             if (this.mealCounter === 0) {
                 mealName = prompt("Choose a name for planned meal!");
                 if (mealName === null ||mealName==='') {
@@ -45,8 +43,6 @@ Vue.createApp({
                 if (isOpenMeal) {
                     isOpenMeal.isOpen = false; // close
                 }
-        
-                
                 const newPlannedMeal = {
                     name: mealName,
                     meals: [this.selectedMeal.meal],
@@ -244,9 +240,7 @@ Vue.createApp({
         // save updated plannedmeals
         localStorage.setItem('plannedMeals', JSON.stringify(this.plannedMeals));
     },
-    saveMealCounterToLocalStorage() {
-        localStorage.setItem('mealCounter', this.mealCounter.toString());
-    },
+    
     toggleCombinedPieChartVisibility() {
         this.showCombinedPieChart = !this.showCombinedPieChart;
     },
@@ -271,7 +265,6 @@ Vue.createApp({
 
             return this.foodData.find(food => food.meal === selected);
         },
-       
        
         combinedDataAllMeals() {
             let combinedData = { protein: 0, sugar: 0, carbs: 0 };

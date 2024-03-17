@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Food Planner for three part meals">
+  <meta name="keywords" content="HTML, CSS, JavaScript, Vue.js">
+  <meta name="author" content="Johanens Sirugo, LilleBjörn Söderberg">
   <title>Euclidian Foods</title>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="main.js" defer></script>
@@ -25,7 +28,7 @@
     <div id="euclidPictures">
       <img id="sadeuc" src="pictures/sadeuc.webp" alt="Euclidian ☹" :style="{ opacity: isOptionSelected ? 0 : 1 }" />
       <img id="happyeuc" src="pictures/happyeuc.jpg" alt="Euclidian Happyman"
-        :style="{ opacity: isOptionSelected ? 1 : 0 }" />
+        :style="{ opacity: isOptionSelected ? 1 : 0 }" /> 
     </div>
     <div id="buttonGidLimiter">
       <div id="buttongrid">
@@ -88,7 +91,7 @@
 
         </li>
 
-        </ul>
+        
         </section>
         <ul id="nutrientsandsvg">
           <!-- added golden text for the best maincourse -->
@@ -102,7 +105,7 @@
           <li id="svgContainer"></li>
           <li>
             <div class="AddAndDeleteAllButtons">
-              <button id="addMealToListButton" @click="addMealToList();">Add:{{
+              <button id="addMealToListButton" @click="addMealToList(); combinedOnOpenPieSVG()">Add:{{
                 selectedMeal.meal }} to list✅</button>
               <button id="deleteAllMealsButton" @click="deleteAllInMeals()" v-if="hasPlannedMeals">❌Delete All
                 Meals❌</button>
@@ -113,10 +116,6 @@
         </transition>
       </transition-group>
   </div>
-
-
-
-
 
   </main>
 
