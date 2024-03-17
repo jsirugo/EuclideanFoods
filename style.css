@@ -306,7 +306,7 @@ select:focus {
     padding: 5px;
     min-width: 50px;
     max-width: 50vw;
-  
+
 }
 
 .AddAndDeleteAllButtons>button {
@@ -363,7 +363,8 @@ select:focus {
         justify-content: center;
     }
 
-    .foodListinfo, .foodListinfo li>* {
+    .foodListinfo,
+    .foodListinfo li>* {
         justify-content: center;
 
     }
@@ -413,7 +414,8 @@ select:focus {
         justify-self: center;
     }
 
-    #foodList,.foodListinfo li>*  {
+    #foodList,
+    .foodListinfo li>* {
         justify-content: center;
     }
 
@@ -425,7 +427,7 @@ select:focus {
     #nutrientsandsvg {
         grid-row: 2;
         text-align: center;
-       
+
 
     }
 

@@ -14,13 +14,13 @@ test('add single meal', async ({ page }) => {
     await page.selectOption('#appetizers', 'Bruschetta');
     await page.click('#addMealToListButton');
 
-    await page.waitForSelector('.foodListinfo'); 
+    await page.waitForSelector('.foodListinfo');
     const mealListText = await page.textContent('.foodListinfo');
     expect(mealListText).toContain('Bruschetta');
 });
 
 test('add three meals', async ({ page }) => {
-   
+
     page.on('dialog', async dialog => {
         await dialog.accept('monday');
     });
@@ -32,7 +32,7 @@ test('add three meals', async ({ page }) => {
     await page.selectOption('#dessert', 'Baklava');
     await page.click('#addMealToListButton');
 
-    await page.waitForSelector('.foodListinfo'); 
+    await page.waitForSelector('.foodListinfo');
     const mealListText = await page.textContent('.foodListinfo');
     expect(mealListText).toContain('Bruschetta');
     expect(mealListText).toContain('Palt');
@@ -46,7 +46,7 @@ test('delete list', async ({ page }) => {
     await page.selectOption('#appetizers', 'Bruschetta');
     await page.click('#addMealToListButton');
     await page.click('#deleteAllMealsButton');
-    await page.waitForSelector('.foodListinfo', { state: 'hidden' }); 
+    await page.waitForSelector('.foodListinfo', { state: 'hidden' });
     const mealList = await page.$('.foodListinfo');
     expect(mealList).toBeNull();
 });
