@@ -297,7 +297,6 @@ select:focus {
     justify-content: center;
 }
 
-
 .AddAndDeleteAllButtons {
     display: flex;
     flex-direction: column;
@@ -359,10 +358,8 @@ select:focus {
         justify-self: center;
     }
 
-    #foodList {
-        justify-content: center;
-    }
-
+    
+    #foodList,
     .foodListinfo,
     .foodListinfo li>* {
         justify-content: center;
@@ -395,6 +392,8 @@ select:focus {
         margin-right: 5px;
         border-radius: 10px;
     }
+    
+     
 }
 
 @media screen and (max-width: 450px) {
@@ -409,34 +408,13 @@ select:focus {
         margin: 0 auto;
     }
 
-    #appetizers,
-    #dessert {
-        justify-self: center;
+    #nutrientsandsvg, #mealNames  {
+        min-width: 390px;
     }
-
-    #foodList,
-    .foodListinfo li>* {
-        justify-content: center;
-    }
-
-    .foodListinfo {
-        justify-content: center;
-        text-align: center;
-    }
-
-    #nutrientsandsvg {
-        grid-row: 2;
-        text-align: center;
-
-
-    }
-
-    .nutrients {
-        gap: 10px;
-        grid-template-columns: repeat(1, 2fr);
-        justify-content: center;
-    }
-
-
+    #deleteAllMealsButton, #addMealToListButton {
+      
+        min-width: 200px;
+     }
+     
 
 }
