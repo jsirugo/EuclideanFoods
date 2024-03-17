@@ -358,7 +358,7 @@ select:focus {
         justify-self: center;
     }
 
-    
+
     #foodList,
     .foodListinfo,
     .foodListinfo li>* {
@@ -392,8 +392,8 @@ select:focus {
         margin-right: 5px;
         border-radius: 10px;
     }
-    
-     
+
+
 }
 
 @media screen and (max-width: 450px) {
@@ -408,13 +408,16 @@ select:focus {
         margin: 0 auto;
     }
 
-    #nutrientsandsvg, #mealNames  {
+    #nutrientsandsvg,
+    #mealNames {
         min-width: 390px;
     }
-    #deleteAllMealsButton, #addMealToListButton {
-      
+
+    #deleteAllMealsButton,
+    #addMealToListButton {
+
         min-width: 200px;
-     }
-     
+    }
+
 
 }

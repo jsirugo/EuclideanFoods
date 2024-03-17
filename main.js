@@ -153,8 +153,6 @@ Vue.createApp({
             return combinedData;
         },
         combinedOnOpenPieSVG(combinedAllData) {
-
-
             const svgNS = "http://www.w3.org/2000/svg";
 
             let totalCombined = 0;
